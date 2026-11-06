@@ -77,6 +77,7 @@ const ingelogd = !!Astro.locals.user;
 				})();
 			</script>
 		)}
+		{THEMA_KIEZER && <meta name="robots" content="noindex, nofollow" />}
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="alternate" type="application/rss+xml" title={`${siteNaam}: nieuws`} href="/rss.xml" />
 		<link rel="alternate" type="text/calendar" title={`${siteNaam}: agenda`} href="/agenda.ics" />
