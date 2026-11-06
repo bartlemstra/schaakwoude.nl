@@ -19,6 +19,7 @@ site draait op het gratis plan van Cloudflare.
 | Eregalerij sinds 1979/80 en ereleden | `src/pages/eregalerij.astro` |
 | Sponsors | `src/pages/sponsors.astro` |
 | Vrije pagina's (club, jeugd, competitie, lid worden, reglementen, oude toernooipagina's) | `src/pages/[...slug].astro` |
+| Standen (Sevilla) met archief sinds 2018 | `src/pages/standen.astro`, `migratie/sevilla.mjs` |
 | Zoeken in het hele archief | `src/pages/zoeken.astro` |
 | Blok "Schaakpartij" in de editor: plak een PGN, de site toont een bord | `plugins/schaakpartij/`, `src/scripts/partij.ts` |
 | Doorverwijzingen van oude adressen (`/content/...`, oude paginanamen, Drupal) | `src/pages/content/`, `redirects` in de seed |
@@ -70,8 +71,16 @@ npx emdash seed migratie/uit/seed-met-inhoud.json \
 `migratie/clubdata.mjs` bevat wat niet uit de database te halen was (teams, sponsors,
 agenda van de bekende data) en de nieuwe pagina "Lid worden".
 
-Nog niet overgezet: de afbeeldingen (`wp-content/uploads`) en de Sevilla-standen
-(`/ftp/...`). Die staan nu nog op de oude hosting en worden gelinkt.
+De Sevilla-standen (`/ftp/...`) staan in `public/ftp/`, zodat oude links blijven werken.
+`/standen` toont de actuele stand per competitie en het archief sinds 2018:
+
+```bash
+# ftp.zip van de oude hosting uitpakken, dan (.sev-bestanden gaan niet mee):
+node migratie/sevilla.mjs <uitgepakte-map>/ftp
+```
+
+Nog niet overgezet: de afbeeldingen (`wp-content/uploads`). Die staan nog op de oude
+hosting en worden gelinkt.
 
 ## Live zetten (Cloudflare, gratis plan)
 

@@ -4,10 +4,12 @@ import Base from "../layouts/Base.astro";
 import NieuwsKaart from "../components/NieuwsKaart.astro";
 import Datumblok from "../components/Datumblok.astro";
 import { blockComponents } from "@schaakwoude/schaakpartij/astro";
-import { ARCHIEFPARTIJ, CLUB, STANDEN } from "../lib/site";
+import { ARCHIEFPARTIJ, CLUB } from "../lib/site";
+import standen from "../data/standen.json";
 import { tijdstip } from "../lib/datum";
 
 const Partij = blockComponents.partij;
+const intern = standen.actueel.find((c) => c.soort === "Interne competitie");
 const nu = Date.now();
 const [nieuws, agenda, teams, sponsors, archief] = await Promise.all([
 	getEmDashCollection("posts", { orderBy: { published_at: "desc" }, limit: 7 }),
@@ -79,10 +81,10 @@ const seizoenen = new Date().getFullYear() - CLUB.opgericht + (new Date().getMon
 		<div class="wrap">
 			<div class="kopregel"><h2>Competitie</h2><a href="/teams">Alle teams</a></div>
 			<div class="competitie-tegels">
-				<a class="tegel" href="/competitie">
+				<a class="tegel" href="/standen">
 					<span class="label">Intern</span>
 					<b>Interne competitie</b>
-					<span class="gedempt klein">Keizer, 27 ronden op donderdag. {STANDEN[0]?.naam}: stand en uitslagen.</span>
+					<span class="gedempt klein">Keizer, 27 ronden op donderdag.{intern?.stand && ` Na ${intern.stand.ronde.toLowerCase()} leidt ${intern.stand.rijen[0]?.[1]}.`}</span>
 				</a>
 				{teams.entries.map((t) => (
 					<a class="tegel" href={`/teams#${t.id}`}>

@@ -129,7 +129,9 @@ function nieuweUrl(url) {
 	const m = url.match(/^(?:https?:)?\/\/(?:www\.)?schaakwoude\.nl(\/[^"'#?\s]*)?(\?[^"'#\s]*)?(#\S*)?$/i);
 	if (!m) return url;
 	const pad = m[1] ?? "/";
-	if (pad.startsWith("/wp-content/") || pad.startsWith("/ftp/")) return OUDE_SITE + pad + (m[2] ?? "");
+	if (pad.startsWith("/wp-content/")) return OUDE_SITE + pad + (m[2] ?? "");
+	// Sevilla-standen staan nu in public/ftp (migratie/sevilla.mjs)
+	if (pad.startsWith("/ftp/")) return pad + (m[2] ?? "") + (m[3] ?? "");
 	const content = pad.match(/^\/content\/([^/]+)\/?$/);
 	if (content) {
 		const slug = decodeURIComponent(content[1]);

@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import standen from "../data/standen.json";
+
+// Tot Clubstand live is komen de standen uit de Sevilla-exports (migratie/sevilla.mjs).
+const anker = (soort: string) => soort.toLowerCase().replace(/[^a-z]+/g, "-");
+const getal = (k: string) => !["Naam"].includes(k);
+const perSeizoen = new Map<number, typeof standen.archief>();
+for (const a of standen.archief) perSeizoen.set(a.seizoen, [...(perSeizoen.get(a.seizoen) ?? []), a]);
+const bijgewerkt = new Date(standen.bijgewerkt).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+---
+<Base title="Standen" description="Actuele standen van de interne competitie, rapid, snelschaak, zomercompetitie en jeugd van Schaakwoude, plus het archief sinds 2018.">
+	<div class="wrap">
+		<header class="paginakop">
+			<p class="oogje">Interne competities</p>
+			<h1>Standen</h1>
+			<p class="lead">De stand na de laatst gespeelde ronde. Klik door naar Sevilla voor de uitslagen per ronde, de kruistabel en de partijen per speler.</p>
+			<nav class="filters" aria-label="Competities" style="margin-top:1rem">
+				{standen.actueel.map((c) => <a href={`#${anker(c.soort)}`}>{c.soort}</a>)}
+				<a href="#archief">Archief</a>
+			</nav>
+		</header>
+
+		<div class="stapel" style="gap:2.5rem">
+			{standen.actueel.map((c) => (
+				<section id={anker(c.soort)} class="stapel">
+					<div class="kopregel">
+						<div>
+							<h2>{c.naam}</h2>
+							{c.stand && <p class="gedempt klein">Stand na {c.stand.ronde.toLowerCase()}</p>}
+						</div>
+						<a href={c.url}>Alle uitslagen</a>
+					</div>
+					{c.stand ? (
+						<div class="tabel-wrap">
+							<table class="tabel">
+								<thead><tr>{c.stand.kolommen.map((k) => <th class:list={{ n: getal(k) }}>{k}</th>)}</tr></thead>
+								<tbody>
+									{c.stand.rijen.map((r) => (
+										<tr>{r.map((v, i) => <td class:list={{ n: getal(c.stand!.kolommen[i]!), sterk: c.stand!.kolommen[i] === "Naam" }} style={c.stand!.kolommen[i] === "Naam" ? "width:35%" : undefined}>{v}</td>)}</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					) : <p class="gedempt">Nog geen stand beschikbaar.</p>}
+				</section>
+			))}
+
+			<section id="archief" class="stapel">
+				<div class="kopregel"><h2>Archief</h2></div>
+				<p class="gedempt klein">Alle competities sinds 2018, zoals ze uit Sevilla zijn gepubliceerd.</p>
+				<div class="archief-raster">
+					{[...perSeizoen].map(([jaar, lijst]) => (
+						<div class="paneel stapel">
+							<h3 style="font-size:1.05rem">{jaar}</h3>
+							<ul style="margin:0;padding-left:1.1em">
+								{lijst.map((a) => <li><a href={a.url}>{a.naam}</a></li>)}
+							</ul>
+						</div>
+					))}
+				</div>
+			</section>
+			<p class="gedempt klein">Bijgewerkt op {bijgewerkt}. Straks komen de standen rechtstreeks uit Clubstand.</p>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.archief-raster { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+</style>

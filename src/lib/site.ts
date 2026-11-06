@@ -23,6 +23,7 @@ export const CLUB = {
 	plaats: "Damwâld",
 	speelzaal: { naam: "Gebouw ijsclub De Wâlden", adres: "Wyger Martensstrjitte 4", plaats: "9104 JM Damwâld" },
 	knsbZaal: { naam: "Grand Café de Nije Warf", adres: "Foarwei 31A", plaats: "9113 PA Wâlterswâld" },
+	email: "contact@schaakwoude.nl",
 	speeltijden: "Elke donderdag: jeugd van 18.45 tot 19.45 uur, senioren vanaf 19.45 uur.",
 	social: [
 		{ naam: "Facebook", url: "https://www.facebook.com/Schaakwoude" },
@@ -32,10 +33,3 @@ export const CLUB = {
 /** Een partij uit het archief die op de voorpagina staat. */
 export const ARCHIEFPARTIJ = { collectie: "pages", slug: "partijen-groep-a-ronde-1", index: 0 } as const;
 
-/** Huidige standen van de interne competitie (Sevilla-export, tot Clubstand live is). */
-export const STANDEN = [
-	{ naam: "Interne competitie 2026", url: "/ftp/intern2026" },
-	{ naam: "Rapid 2025-2026", url: "/ftp/rapid20252026/" },
-	{ naam: "Snelschaak 2026", url: "/ftp/snelschaak2026" },
-	{ naam: "Zomercompetitie (Simmer) 2026", url: "/ftp/simmer2026" },
-];

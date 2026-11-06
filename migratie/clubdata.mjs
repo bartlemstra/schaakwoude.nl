@@ -107,15 +107,56 @@ function agenda(tabel) {
 		if (/^\d+$/.test(j)) voeg(`jeugd-${id}`, `Jeugdcompetitie, ronde ${j}`, tijdstip(jaar, maand, dag, "18:45"), "Jeugd", { locatie: SPEELZAAL });
 	}
 
-	// Seizoen 2026/2027: de kalender is nog niet aangeleverd. Wel bekend:
-	voeg("simultaan-sipke-ernst-2026", "Simultaan tegen grootmeester Sipke Ernst", tijdstip(2026, 11, 7, "13:00"), "Toernooi", {
-		locatie: "Winkelcentrum Damwâld",
-		uitgelicht: true,
-		omschrijving: "Erelid en grootmeester Sipke Ernst speelt simultaan. Iedereen die kan schaken mag aanschuiven, van beginner tot ervaren speler. Deelname is gratis.",
-		link: "/nieuws/aanstaande-za-1300-simultaan-in-winkelcentrum",
-	});
-	for (const dag of [12, 19, 26]) voeg(`clubavond-2026-11-${dag}`, "Clubavond", tijdstip(2026, 11, dag, "18:45"), "Clubavond", { locatie: SPEELZAAL, omschrijving: "Jeugd van 18.45 tot 19.45 uur, daarna de senioren." });
-	for (const dag of [3, 10, 17]) voeg(`clubavond-2026-12-${dag}`, "Clubavond", tijdstip(2026, 12, dag, "18:45"), "Clubavond", { locatie: SPEELZAAL, omschrijving: "Jeugd van 18.45 tot 19.45 uur, daarna de senioren." });
+	// Seizoen 2026/2027, uit de seizoenskalender senioren (pdf van het bestuur)
+	const K = [
+		[2026, 9, 3, "ALV"], [2026, 9, 10, "I1"], [2026, 9, 17, "I2"], [2026, 9, 19, "KNSB"], [2026, 9, 24, "I3"], [2026, 9, 25, "BBQ"],
+		[2026, 10, 1, "I4"], [2026, 10, 3, "KNSB"], [2026, 10, 5, "FSB Philidor 2 - SCHW 2"], [2026, 10, 8, "I5", "FSB SCHW 1 - Sneek 1", "FSB SCHW 3 - Bakkeveen 2"],
+		[2026, 10, 15, "I6"], [2026, 10, 22, "I7"], [2026, 10, 29, "R1-3"], [2026, 10, 31, "KNSB"],
+		[2026, 11, 2, "FSB Emmeloord 1 - SCHW 1", "FSB NEO 2 - SCHW 3"], [2026, 11, 5, "I8", "FSB SCHW 2 - De Donger 1"], [2026, 11, 7, "PROMO"],
+		[2026, 11, 12, "I9"], [2026, 11, 19, "R4-6"], [2026, 11, 21, "KNSB"], [2026, 11, 26, "I10", "FSB SCHW 1 - Mid Fryslân 1", "FSB Franeker - SCHW 2", "FSB SCHW 3 - Lasker 2"],
+		[2026, 12, 3, "I11"], [2026, 12, 5, "KNSB"], [2026, 12, 10, "I12"], [2026, 12, 14, "FSB Philidor 1 - SCHW 1", "FSB Philidor 3 - SCHW 3"],
+		[2026, 12, 17, "I13", "FSB SCHW 2 - NEO 1"], [2026, 12, 24, "VAK Kerstvakantie"], [2026, 12, 31, "VAK Kerstvakantie"],
+		[2027, 1, 2, "JVDV"], [2027, 1, 7, "R7-9"], [2027, 1, 9, "KNSB"], [2027, 1, 14, "I14"], [2027, 1, 21, "I15"], [2027, 1, 28, "I16"],
+		[2027, 2, 4, "I18"], [2027, 2, 11, "I17", "FSB SCHW 1 - Steenwijk 1", "FSB Jurjen Tolsma 1 - SCHW 2", "FSB SCHW 3 - De Donger 2"],
+		[2027, 2, 18, "R10-12"], [2027, 2, 25, "I19"],
+		[2027, 3, 4, "SNEL"], [2027, 3, 11, "I20"], [2027, 3, 13, "KNSB"], [2027, 3, 18, "I21", "FSB SCHW 2 - De Rode Loper 1", "FSB De Rode Loper 2 - SCHW 3"],
+		[2027, 3, 19, "FSB Lasker 1 - SCHW 1"], [2027, 3, 25, "I22"],
+		[2027, 4, 1, "I23"], [2027, 4, 3, "KNSB"], [2027, 4, 8, "I24", "FSB SCHW 1 - DTK 1"], [2027, 4, 9, "FSB DTK 2 - SCHW 2"],
+		[2027, 4, 15, "I25"], [2027, 4, 17, "KNSB"], [2027, 4, 22, "I26"], [2027, 4, 29, "I27"],
+		[2027, 5, 6, "VAK Hemelvaartsdag"], [2027, 5, 13, "SLOT"],
+		[2027, 5, 20, "Z1"], [2027, 5, 27, "Z2"], [2027, 6, 3, "Z3"], [2027, 6, 10, "Z4"], [2027, 6, 17, "Z5"], [2027, 6, 24, "Z6"],
+	];
+	const ploeg = (t) => t.replace(/^SCHW /, "Schaakwoude ").replace(/ - SCHW /, " - Schaakwoude ").replace(" - ", " – ");
+	for (const [jaar, maand, dag, ...regels] of K) {
+		const id = `${jaar}-${maand}-${dag}`;
+		const opDonderdag = new Date(Date.UTC(jaar, maand - 1, dag)).getUTCDay() === 4;
+		for (const r of regels) {
+			let m;
+			if (r === "ALV") voeg(`alv-${id}`, "Algemene ledenvergadering", tijdstip(jaar, maand, dag, "20:00"), "Vergadering", { locatie: SPEELZAAL });
+			else if ((m = r.match(/^I(\d+)$/))) voeg(`intern-${id}`, `Interne competitie, ronde ${m[1]}`, tijdstip(jaar, maand, dag, "19:45"), "Interne competitie", { locatie: SPEELZAAL });
+			else if ((m = r.match(/^R(\d+-\d+)$/))) voeg(`rapid-${id}`, `Rapidcompetitie, ronde ${m[1].replace("-", " t/m ")}`, tijdstip(jaar, maand, dag, "19:45"), "Interne competitie", { locatie: SPEELZAAL });
+			else if ((m = r.match(/^Z(\d)$/))) voeg(`zomer-${id}`, `Zomercompetitie${m[1] === "6" ? " (slotavond)" : `, avond ${m[1]}`}`, tijdstip(jaar, maand, dag, "19:45"), "Interne competitie", { locatie: SPEELZAAL });
+			else if (r === "KNSB") voeg(`knsb-${id}`, "KNSB-competitie", tijdstip(jaar, maand, dag, "13:00"), "KNSB", { locatie: "Zie het teamschema" });
+			else if (r === "BBQ") voeg(`bbq-${id}`, "Barbecue: opening van het seizoen", tijdstip(jaar, maand, dag, "18:00"), "Club", { locatie: SPEELZAAL });
+			else if (r === "SNEL") voeg(`snel-${id}`, "Snelschaken", tijdstip(jaar, maand, dag, "19:45"), "Interne competitie", { locatie: SPEELZAAL });
+			else if (r === "SLOT") voeg(`slot-${id}`, "Slotavond met prijsuitreiking", tijdstip(jaar, maand, dag, "19:45"), "Club", { locatie: SPEELZAAL });
+			else if (r === "JVDV") voeg(`jvdv-${id}`, "Jan van der Veen Schaaktoernooi", tijdstip(jaar, maand, dag, "10:00"), "Toernooi", { hele_dag: true, uitgelicht: true });
+			else if ((m = r.match(/^VAK (.+)$/))) voeg(`vrij-${id}`, `${m[1]}: geen clubavond`, tijdstip(jaar, maand, dag, "19:45"), "Vakantie", { hele_dag: true });
+			else if (r === "PROMO")
+				voeg("simultaan-sipke-ernst-2026", "Promotiedag: simultaan tegen grootmeester Sipke Ernst", tijdstip(2026, 11, 7, "13:00"), "Toernooi", {
+					locatie: "Winkelcentrum Damwâld",
+					uitgelicht: true,
+					omschrijving: "Erelid en grootmeester Sipke Ernst speelt simultaan. Iedereen die kan schaken mag aanschuiven, van beginner tot ervaren speler. Deelname is gratis.",
+					link: "/nieuws/aanstaande-za-1300-simultaan-in-winkelcentrum",
+				});
+			else if ((m = r.match(/^FSB (.+)$/))) {
+				const thuis = /^SCHW /.test(m[1]);
+				const slug = m[1].toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-");
+				voeg(`fsb-${id}-${slug}`, `FSB: ${ploeg(m[1])}`, tijdstip(jaar, maand, dag, "19:45"), "FSB",
+					thuis && opDonderdag ? { locatie: SPEELZAAL } : { hele_dag: true, locatie: thuis ? "Thuis, zie het teamschema" : "Uit" });
+			} else throw new Error(`Onbekende agendaregel ${r}`);
+		}
+	}
 	return items;
 }
 
@@ -158,7 +199,7 @@ const paginas = [
 		kop("Contributie"),
 		alinea(vet("[In te vullen door de penningmeester]"), " Bedragen per seizoen voor senioren, jeugd en donateurs. Leden die extern spelen staan ingeschreven bij de KNSB."),
 		kop("Aanmelden"),
-		alinea("Spreek iemand aan op de clubavond of mail de secretaris (", vet("[e-mailadres secretaris]"), "). Na je aanmelding schrijft de secretaris je in bij de KNSB."),
+		alinea("Spreek iemand aan op de clubavond of mail de secretaris (", vet("contact@schaakwoude.nl"), "). Na je aanmelding schrijft de secretaris je in bij de KNSB."),
 	], { intro: "Iedereen die kan schaken, of het wil leren, is welkom bij Schaakwoude." }),
 ];
 

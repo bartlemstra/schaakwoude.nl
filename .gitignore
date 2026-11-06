@@ -12,3 +12,4 @@ uploads/
 migratie/uit/
 *.sql
 .DS_Store
+*.sev

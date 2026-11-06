@@ -1,0 +1,1626 @@
+{
+	"bijgewerkt": "2026-11-06",
+	"actueel": [
+		{
+			"soort": "Interne competitie",
+			"naam": "Interne competitie 2026/27",
+			"url": "/ftp/intern2026/",
+			"stand": {
+				"ronde": "Ronde 7",
+				"kolommen": [
+					"Pos",
+					"Naam",
+					"Prt",
+					"W",
+					"R",
+					"V",
+					"Score",
+					"Rtg",
+					"TPR"
+				],
+				"rijen": [
+					[
+						"1",
+						"Gerben vd Heide",
+						"5",
+						"4",
+						"1",
+						"0",
+						"170,2",
+						"1924",
+						"2121"
+					],
+					[
+						"2",
+						"Mathijs Visser",
+						"6",
+						"3",
+						"2",
+						"1",
+						"153,9",
+						"2013",
+						"1966"
+					],
+					[
+						"3",
+						"Evert Drijver",
+						"7",
+						"4",
+						"2",
+						"1",
+						"151,4",
+						"1887",
+						"1894"
+					],
+					[
+						"4",
+						"Jan Torensma",
+						"6",
+						"3",
+						"2",
+						"1",
+						"136,3",
+						"1963",
+						"1905"
+					],
+					[
+						"5",
+						"Menno Veenstra",
+						"3",
+						"2",
+						"1",
+						"0",
+						"125,2",
+						"1753",
+						"2122"
+					],
+					[
+						"6",
+						"Gerke Ros",
+						"4",
+						"1",
+						"3",
+						"0",
+						"121,4",
+						"1949",
+						"1927"
+					],
+					[
+						"7",
+						"Jan Meijer",
+						"7",
+						"2",
+						"2",
+						"3",
+						"93,2",
+						"1642",
+						"1730"
+					],
+					[
+						"8",
+						"Hessel Sijbersma",
+						"5",
+						"0",
+						"3",
+						"2",
+						"89,7",
+						"1656",
+						"1550"
+					],
+					[
+						"9",
+						"Jaap Miedema",
+						"2",
+						"2",
+						"0",
+						"0",
+						"89,0",
+						"1771",
+						"2200"
+					],
+					[
+						"10",
+						"Pieter van Kammen",
+						"3",
+						"2",
+						"0",
+						"1",
+						"86,9",
+						"1773",
+						"1758"
+					],
+					[
+						"11",
+						"Bauke Vroom",
+						"4",
+						"2",
+						"0",
+						"2",
+						"79,7",
+						"1821",
+						"1704"
+					],
+					[
+						"12",
+						"Fokke de Haan",
+						"4",
+						"1",
+						"1",
+						"2",
+						"75,1",
+						"1717",
+						"1470"
+					],
+					[
+						"13",
+						"Catrines Veenstra",
+						"4",
+						"2",
+						"0",
+						"2",
+						"68,5",
+						"1669",
+						"1680"
+					],
+					[
+						"14",
+						"Harke Wijnsma",
+						"3",
+						"1",
+						"1",
+						"1",
+						"67,5",
+						"1664",
+						"1664"
+					],
+					[
+						"15",
+						"Auke Postma",
+						"6",
+						"2",
+						"0",
+						"4",
+						"57,3",
+						"1461",
+						"1470"
+					],
+					[
+						"16",
+						"Foeke Elzinga",
+						"5",
+						"2",
+						"0",
+						"3",
+						"54,9",
+						"1539",
+						"1539"
+					],
+					[
+						"17",
+						"Ronald van der Veen",
+						"0",
+						"0",
+						"0",
+						"0",
+						"52,6",
+						"1976",
+						""
+					],
+					[
+						"18",
+						"Gerwin Nijholt",
+						"3",
+						"1",
+						"0",
+						"2",
+						"46,7",
+						"1408",
+						"1567"
+					],
+					[
+						"19",
+						"Kees Appel",
+						"3",
+						"1",
+						"0",
+						"2",
+						"44,0",
+						"1555",
+						"1586"
+					],
+					[
+						"20",
+						"Christian Torensma",
+						"0",
+						"0",
+						"0",
+						"0",
+						"26,7",
+						"1926",
+						""
+					],
+					[
+						"21",
+						"Serge Cornelissen",
+						"7",
+						"0",
+						"0",
+						"7",
+						"15,1",
+						"1365",
+						"810"
+					]
+				]
+			}
+		},
+		{
+			"soort": "Rapid",
+			"naam": "Rapid 2025/26",
+			"url": "/ftp/rapid20252026/",
+			"stand": {
+				"ronde": "Ronde 12",
+				"kolommen": [
+					"Pos",
+					"Naam",
+					"Prt",
+					"W",
+					"R",
+					"V",
+					"Score",
+					"Rtg",
+					"TPR"
+				],
+				"rijen": [
+					[
+						"1",
+						"Ronald van der Veen",
+						"9",
+						"7",
+						"1",
+						"1",
+						"8,5",
+						"1998",
+						"2081"
+					],
+					[
+						"2",
+						"Christian Torensma",
+						"10",
+						"6",
+						"2",
+						"2",
+						"8,0",
+						"1955",
+						"1966"
+					],
+					[
+						"3",
+						"Gerben van der Heide",
+						"8",
+						"4",
+						"2",
+						"2",
+						"6,0",
+						"1911",
+						"1926"
+					],
+					[
+						"4",
+						"Gerke Ros",
+						"7",
+						"3",
+						"3",
+						"1",
+						"5,5",
+						"1921",
+						"1917"
+					],
+					[
+						"5",
+						"Bauke Vroom",
+						"12",
+						"4",
+						"3",
+						"5",
+						"5,5",
+						"1816",
+						"1789"
+					],
+					[
+						"6",
+						"Jaap Miedema",
+						"9",
+						"4",
+						"1",
+						"4",
+						"5,5",
+						"1767",
+						"1745"
+					],
+					[
+						"7",
+						"Menno Veenstrra",
+						"6",
+						"3",
+						"1",
+						"2",
+						"4,5",
+						"1733",
+						"1880"
+					],
+					[
+						"8",
+						"Jan Torensma",
+						"7",
+						"3",
+						"1",
+						"3",
+						"4,5",
+						"1878",
+						"1789"
+					],
+					[
+						"9",
+						"Henk Broersma",
+						"3",
+						"3",
+						"0",
+						"0",
+						"4,0",
+						"1958",
+						"2504"
+					],
+					[
+						"10",
+						"Henk van der Heide",
+						"3",
+						"3",
+						"0",
+						"0",
+						"4,0",
+						"1874",
+						"2521"
+					],
+					[
+						"11",
+						"Gert Jan Rauw",
+						"3",
+						"2",
+						"1",
+						"0",
+						"3,5",
+						"2135",
+						"2103"
+					],
+					[
+						"12",
+						"Hessel Sijbersma",
+						"11",
+						"2",
+						"1",
+						"8",
+						"3,5",
+						"1680",
+						"1575"
+					],
+					[
+						"13",
+						"Auke Postma",
+						"6",
+						"2",
+						"1",
+						"3",
+						"3,5",
+						"1498",
+						"1682"
+					],
+					[
+						"14",
+						"Gerwin Nijholt",
+						"8",
+						"2",
+						"1",
+						"5",
+						"3,5",
+						"1514",
+						"1604"
+					],
+					[
+						"15",
+						"Evert Drijver",
+						"3",
+						"1",
+						"2",
+						"0",
+						"3,0",
+						"1879",
+						"1943"
+					],
+					[
+						"16",
+						"Sander Visser",
+						"3",
+						"1",
+						"1",
+						"1",
+						"2,5",
+						"1699",
+						"1746"
+					],
+					[
+						"17",
+						"Jan Meijer",
+						"6",
+						"1",
+						"1",
+						"4",
+						"2,5",
+						"1645",
+						"1612"
+					],
+					[
+						"18",
+						"Fokke de Haan",
+						"5",
+						"1",
+						"1",
+						"3",
+						"2,5",
+						"1698",
+						"1585"
+					],
+					[
+						"19",
+						"Mathijs Visser",
+						"1",
+						"1",
+						"0",
+						"0",
+						"2,0",
+						"1958",
+						"2631"
+					],
+					[
+						"20",
+						"Joop van Ginkel",
+						"2",
+						"1",
+						"0",
+						"1",
+						"2,0",
+						"1510",
+						"1708"
+					],
+					[
+						"21",
+						"Kees Appel",
+						"5",
+						"0",
+						"0",
+						"5",
+						"2,0",
+						"1583",
+						"859"
+					],
+					[
+						"22",
+						"Doutzen Wijnsma",
+						"1",
+						"0",
+						"1",
+						"0",
+						"1,5",
+						"1507",
+						"1721"
+					],
+					[
+						"23",
+						"Chantal de Boer",
+						"1",
+						"0",
+						"0",
+						"1",
+						"1,0",
+						"1496",
+						"974"
+					],
+					[
+						"24",
+						"Cedric Cornelissen",
+						"3",
+						"0",
+						"0",
+						"3",
+						"1,0",
+						"1473",
+						"847"
+					]
+				]
+			}
+		},
+		{
+			"soort": "Snelschaak",
+			"naam": "Snelschaak 2026",
+			"url": "/ftp/snelschaak2026/",
+			"stand": {
+				"ronde": "Ronde 9",
+				"kolommen": [
+					"Pos",
+					"Naam",
+					"Prt",
+					"W",
+					"R",
+					"V",
+					"Score",
+					"Rtg",
+					"TPR"
+				],
+				"rijen": [
+					[
+						"1",
+						"Gert Jan Rauw",
+						"9",
+						"7",
+						"2",
+						"0",
+						"8,0",
+						"2150",
+						"2156"
+					],
+					[
+						"2",
+						"Teun Meindersma",
+						"9",
+						"8",
+						"0",
+						"1",
+						"8,0",
+						"2049",
+						"2196"
+					],
+					[
+						"3",
+						"Hendrik Heikamp",
+						"9",
+						"7",
+						"0",
+						"2",
+						"7,0",
+						"2043",
+						"2116"
+					],
+					[
+						"4",
+						"Evert Drijver",
+						"9",
+						"5",
+						"1",
+						"3",
+						"5,5",
+						"1895",
+						"1926"
+					],
+					[
+						"5",
+						"Henk van der Heide",
+						"9",
+						"5",
+						"0",
+						"4",
+						"5,0",
+						"1849",
+						"1846"
+					],
+					[
+						"6",
+						"Ronald van der Veen",
+						"9",
+						"4",
+						"2",
+						"3",
+						"5,0",
+						"1964",
+						"1888"
+					],
+					[
+						"7",
+						"Gerke Ros",
+						"9",
+						"4",
+						"1",
+						"4",
+						"4,5",
+						"1916",
+						"1853"
+					],
+					[
+						"8",
+						"Theo Meindersma",
+						"9",
+						"4",
+						"0",
+						"5",
+						"4,0",
+						"1798",
+						"1882"
+					],
+					[
+						"9",
+						"Wim de Vries",
+						"9",
+						"4",
+						"0",
+						"5",
+						"4,0",
+						"1685",
+						"1832"
+					],
+					[
+						"10",
+						"Gerben van der Heide",
+						"9",
+						"4",
+						"0",
+						"5",
+						"4,0",
+						"1865",
+						"1781"
+					],
+					[
+						"11",
+						"Bauke Vroom",
+						"9",
+						"3",
+						"1",
+						"5",
+						"3,5",
+						"1794",
+						"1781"
+					],
+					[
+						"12",
+						"Menno Veenstra",
+						"9",
+						"3",
+						"1",
+						"5",
+						"3,5",
+						"1717",
+						"1668"
+					],
+					[
+						"13",
+						"Jan Torensma",
+						"9",
+						"3",
+						"0",
+						"6",
+						"3,0",
+						"1862",
+						"1631"
+					],
+					[
+						"14",
+						"Max de Vries",
+						"5",
+						"2",
+						"0",
+						"3",
+						"2,0",
+						"1321",
+						"1606"
+					],
+					[
+						"15",
+						"Kees Appel",
+						"9",
+						"2",
+						"0",
+						"7",
+						"2,0",
+						"1577",
+						"1507"
+					],
+					[
+						"16",
+						"Mariska Appelbloem",
+						"2",
+						"0",
+						"0",
+						"2",
+						"0,0",
+						"1193",
+						"920"
+					],
+					[
+						"17",
+						"Chantal de Boer",
+						"1",
+						"0",
+						"0",
+						"1",
+						"0,0",
+						"1498",
+						"1081"
+					],
+					[
+						"18",
+						"Nick Keizer",
+						"4",
+						"0",
+						"0",
+						"4",
+						"0,0",
+						"1294",
+						"1007"
+					]
+				]
+			}
+		},
+		{
+			"soort": "Zomercompetitie",
+			"naam": "Zomercompetitie 2026",
+			"url": "/ftp/simmer2026/",
+			"stand": {
+				"ronde": "Ronde 10",
+				"kolommen": [
+					"Pos",
+					"Naam",
+					"Prt",
+					"W",
+					"R",
+					"V",
+					"Score",
+					"Rtg",
+					"TPR"
+				],
+				"rijen": [
+					[
+						"1",
+						"Hindrik Heikamp",
+						"8",
+						"7",
+						"0",
+						"1",
+						"8,0",
+						"2116",
+						"2117"
+					],
+					[
+						"2",
+						"Evert Drijver",
+						"10",
+						"7",
+						"1",
+						"2",
+						"7,5",
+						"1874",
+						"1857"
+					],
+					[
+						"3",
+						"Albert Jan Hummel",
+						"6",
+						"5",
+						"0",
+						"1",
+						"6,0",
+						"2068",
+						"1946"
+					],
+					[
+						"4",
+						"Gerben van der Heide",
+						"8",
+						"5",
+						"0",
+						"3",
+						"6,0",
+						"1884",
+						"1646"
+					],
+					[
+						"5",
+						"Bauke Vroom",
+						"5",
+						"4",
+						"0",
+						"1",
+						"5,0",
+						"1839",
+						"1692"
+					],
+					[
+						"6",
+						"Theo Meindersma",
+						"6",
+						"4",
+						"0",
+						"2",
+						"5,0",
+						"1809",
+						"1739"
+					],
+					[
+						"7",
+						"Hessel Sijbersma",
+						"7",
+						"3",
+						"1",
+						"3",
+						"5,0",
+						"1698",
+						"1590"
+					],
+					[
+						"8",
+						"Jan Torensma",
+						"5",
+						"3",
+						"1",
+						"1",
+						"4,5",
+						"1900",
+						"1790"
+					],
+					[
+						"9",
+						"Ronald van der Veen",
+						"4",
+						"3",
+						"1",
+						"0",
+						"4,5",
+						"1989",
+						"1905"
+					],
+					[
+						"10",
+						"Auke Postma",
+						"10",
+						"4",
+						"1",
+						"5",
+						"4,5",
+						"1468",
+						"1418"
+					],
+					[
+						"11",
+						"Sjouke Sinia",
+						"10",
+						"4",
+						"0",
+						"6",
+						"4,0",
+						"1591",
+						"1547"
+					],
+					[
+						"12",
+						"Kees Appel",
+						"8",
+						"4",
+						"0",
+						"4",
+						"4,0",
+						"1635",
+						"1791"
+					],
+					[
+						"13",
+						"Harke Wijnsma",
+						"4",
+						"3",
+						"0",
+						"1",
+						"4,0",
+						"1526",
+						"1761"
+					],
+					[
+						"14",
+						"Gerke Ros",
+						"4",
+						"3",
+						"0",
+						"1",
+						"4,0",
+						"1935",
+						"1453"
+					],
+					[
+						"15",
+						"Max de Vries",
+						"8",
+						"3",
+						"0",
+						"5",
+						"4,0",
+						"768",
+						"1355"
+					],
+					[
+						"16",
+						"Piet Bouma",
+						"10",
+						"3",
+						"1",
+						"6",
+						"3,5",
+						"1423",
+						"1401"
+					],
+					[
+						"17",
+						"Emma Rozendal",
+						"5",
+						"2",
+						"1",
+						"2",
+						"3,5",
+						"1081",
+						"1382"
+					],
+					[
+						"18",
+						"Sven Broersma",
+						"2",
+						"2",
+						"0",
+						"0",
+						"3,0",
+						"2164",
+						"2001"
+					],
+					[
+						"19",
+						"Chantal de Boer",
+						"2",
+						"2",
+						"0",
+						"0",
+						"3,0",
+						"1516",
+						"1998"
+					],
+					[
+						"20",
+						"Doutzen Wijnsma",
+						"5",
+						"2",
+						"0",
+						"3",
+						"3,0",
+						"1217",
+						"1465"
+					],
+					[
+						"21",
+						"Bernard Keizer",
+						"2",
+						"2",
+						"0",
+						"0",
+						"3,0",
+						"1753",
+						"2101"
+					],
+					[
+						"22",
+						"Foeko Hoekstra",
+						"2",
+						"1",
+						"1",
+						"0",
+						"2,5",
+						"2176",
+						"2132"
+					],
+					[
+						"23",
+						"Mike Hilleger",
+						"8",
+						"1",
+						"1",
+						"6",
+						"2,5",
+						"1261",
+						"1118"
+					],
+					[
+						"24",
+						"Gerwin Nijholt",
+						"3",
+						"1",
+						"0",
+						"2",
+						"2,0",
+						"1299",
+						"1386"
+					],
+					[
+						"25",
+						"Jim de Wit",
+						"2",
+						"1",
+						"0",
+						"1",
+						"2,0",
+						"1791",
+						"1655"
+					],
+					[
+						"26",
+						"Serge Cornelissen",
+						"10",
+						"2",
+						"0",
+						"8",
+						"2,0",
+						"1192",
+						"1230"
+					],
+					[
+						"27",
+						"Mathijs Visser",
+						"1",
+						"1",
+						"0",
+						"0",
+						"2,0",
+						"2007",
+						"2699"
+					],
+					[
+						"28",
+						"Mariska Appel",
+						"0",
+						"0",
+						"0",
+						"0",
+						"2,0",
+						"1100",
+						""
+					],
+					[
+						"29",
+						"Sjoerd Hoekstra",
+						"2",
+						"1",
+						"0",
+						"1",
+						"2,0",
+						"1892",
+						"1548"
+					],
+					[
+						"30",
+						"Foeke Elzinga",
+						"4",
+						"1",
+						"0",
+						"3",
+						"2,0",
+						"1278",
+						"1141"
+					],
+					[
+						"31",
+						"Henk Broersma",
+						"1",
+						"1",
+						"0",
+						"0",
+						"2,0",
+						"1958",
+						"2201"
+					],
+					[
+						"32",
+						"Fedde Battenberg",
+						"1",
+						"0",
+						"1",
+						"0",
+						"1,5",
+						"1308",
+						"1718"
+					],
+					[
+						"33",
+						"Johannes Kingma",
+						"10",
+						"1",
+						"0",
+						"9",
+						"1,0",
+						"1345",
+						"1172"
+					],
+					[
+						"34",
+						"Shanne Battenberg",
+						"5",
+						"0",
+						"0",
+						"5",
+						"1,0",
+						"1079",
+						"809"
+					],
+					[
+						"35",
+						"Bente Kommerie",
+						"1",
+						"0",
+						"0",
+						"1",
+						"1,0",
+						"750",
+						"1148"
+					],
+					[
+						"36",
+						"Fenna van Campen",
+						"3",
+						"0",
+						"0",
+						"3",
+						"1,0",
+						"793",
+						"1157"
+					]
+				]
+			}
+		},
+		{
+			"soort": "Jeugd",
+			"naam": "Jeugd najaar 2026",
+			"url": "/ftp/jeugd26najaar/",
+			"stand": {
+				"ronde": "Ronde 14",
+				"kolommen": [
+					"Pos",
+					"Naam",
+					"Prt",
+					"W",
+					"R",
+					"V",
+					"Score",
+					"TPR"
+				],
+				"rijen": [
+					[
+						"1",
+						"Chantal de Boer",
+						"13",
+						"11",
+						"1",
+						"1",
+						"12,0",
+						"1126"
+					],
+					[
+						"2",
+						"Doutzen Wijnsma",
+						"13",
+						"11",
+						"1",
+						"1",
+						"12,0",
+						"1383"
+					],
+					[
+						"3",
+						"Emma Rozendal",
+						"13",
+						"10",
+						"0",
+						"3",
+						"10,5",
+						"952"
+					],
+					[
+						"4",
+						"Max de Vries",
+						"11",
+						"7",
+						"1",
+						"3",
+						"8,8",
+						"927"
+					],
+					[
+						"5",
+						"Liam Homsma",
+						"9",
+						"5",
+						"0",
+						"4",
+						"7,7",
+						"919"
+					],
+					[
+						"6",
+						"Davey Bloem",
+						"13",
+						"6",
+						"1",
+						"6",
+						"7,0",
+						"686"
+					],
+					[
+						"7",
+						"Bente Kommerie",
+						"11",
+						"5",
+						"0",
+						"6",
+						"7,0",
+						"721"
+					],
+					[
+						"8",
+						"Roan Groeneveld",
+						"12",
+						"6",
+						"0",
+						"6",
+						"7,0",
+						"618"
+					],
+					[
+						"9",
+						"Rienk Verbeek",
+						"8",
+						"4",
+						"0",
+						"4",
+						"6,8",
+						"841"
+					],
+					[
+						"10",
+						"Shanne Battenberg",
+						"13",
+						"6",
+						"0",
+						"7",
+						"6,5",
+						"698"
+					],
+					[
+						"11",
+						"Fenna van Campen",
+						"11",
+						"5",
+						"0",
+						"6",
+						"6,3",
+						"1010"
+					],
+					[
+						"12",
+						"Hidde Van der Meulen",
+						"7",
+						"3",
+						"0",
+						"4",
+						"6,3",
+						"726"
+					],
+					[
+						"13",
+						"Kevin Damstra",
+						"7",
+						"3",
+						"0",
+						"4",
+						"5,7",
+						"261"
+					],
+					[
+						"14",
+						"Mike Hilleger",
+						"12",
+						"4",
+						"0",
+						"8",
+						"5,5",
+						"726"
+					],
+					[
+						"15",
+						"Jurjen Smid",
+						"4",
+						"2",
+						"0",
+						"2",
+						"5,3",
+						"908"
+					],
+					[
+						"16",
+						"Jippe Klaas Leystra",
+						"3",
+						"0",
+						"0",
+						"3",
+						"4,3",
+						"156"
+					],
+					[
+						"17",
+						"Ferre Battenberg",
+						"11",
+						"1",
+						"0",
+						"10",
+						"3,0",
+						"60"
+					],
+					[
+						"18",
+						"Jesper Bloem",
+						"11",
+						"0",
+						"0",
+						"11",
+						"2,0",
+						"31"
+					]
+				]
+			}
+		}
+	],
+	"archief": [
+		{
+			"naam": "Interne competitie 2026/27",
+			"soort": "Interne competitie",
+			"seizoen": 2027,
+			"url": "/ftp/intern2026/"
+		},
+		{
+			"naam": "Jeugd najaar 2026",
+			"soort": "Jeugd",
+			"seizoen": 2026,
+			"url": "/ftp/jeugd26najaar/"
+		},
+		{
+			"naam": "Interne competitie 2025/26",
+			"soort": "Interne competitie",
+			"seizoen": 2026,
+			"url": "/ftp/intern2025/"
+		},
+		{
+			"naam": "Rapid 2025/26",
+			"soort": "Rapid",
+			"seizoen": 2026,
+			"url": "/ftp/rapid20252026/"
+		},
+		{
+			"naam": "Snelschaak 2026",
+			"soort": "Snelschaak",
+			"seizoen": 2026,
+			"url": "/ftp/snelschaak2026/"
+		},
+		{
+			"naam": "Zomercompetitie 2026",
+			"soort": "Zomercompetitie",
+			"seizoen": 2026,
+			"url": "/ftp/simmer2026/"
+		},
+		{
+			"naam": "Jeugd voorjaar 2026",
+			"soort": "Jeugd",
+			"seizoen": 2026,
+			"url": "/ftp/jeugd26voorjaar/"
+		},
+		{
+			"naam": "Jeugd najaar 2025",
+			"soort": "Jeugd",
+			"seizoen": 2025,
+			"url": "/ftp/jeugd25najaar/"
+		},
+		{
+			"naam": "Interne competitie 2024/25",
+			"soort": "Interne competitie",
+			"seizoen": 2025,
+			"url": "/ftp/intern20242025/"
+		},
+		{
+			"naam": "Rapid 2024/25",
+			"soort": "Rapid",
+			"seizoen": 2025,
+			"url": "/ftp/rapid20242025/"
+		},
+		{
+			"naam": "Snelschaak 2025",
+			"soort": "Snelschaak",
+			"seizoen": 2025,
+			"url": "/ftp/snelschaak2025/"
+		},
+		{
+			"naam": "Zomercompetitie 2025",
+			"soort": "Zomercompetitie",
+			"seizoen": 2025,
+			"url": "/ftp/simmer2025/"
+		},
+		{
+			"naam": "Jeugd voorjaar 2025",
+			"soort": "Jeugd",
+			"seizoen": 2025,
+			"url": "/ftp/jeugd25voorjaar/"
+		},
+		{
+			"naam": "Jeugd najaar 2024",
+			"soort": "Jeugd",
+			"seizoen": 2024,
+			"url": "/ftp/jeugd24najaar/"
+		},
+		{
+			"naam": "Interne competitie 2023/24",
+			"soort": "Interne competitie",
+			"seizoen": 2024,
+			"url": "/ftp/intern20232024/"
+		},
+		{
+			"naam": "Rapid 2023/24",
+			"soort": "Rapid",
+			"seizoen": 2024,
+			"url": "/ftp/rapid2024/"
+		},
+		{
+			"naam": "Snelschaak 2024",
+			"soort": "Snelschaak",
+			"seizoen": 2024,
+			"url": "/ftp/snelschaak2024/"
+		},
+		{
+			"naam": "Zomercompetitie 2024",
+			"soort": "Zomercompetitie",
+			"seizoen": 2024,
+			"url": "/ftp/simmer2024/"
+		},
+		{
+			"naam": "Jeugd voorjaar 2024",
+			"soort": "Jeugd",
+			"seizoen": 2024,
+			"url": "/ftp/jeugd24voorjaar/"
+		},
+		{
+			"naam": "Jeugd najaar 2023",
+			"soort": "Jeugd",
+			"seizoen": 2023,
+			"url": "/ftp/jeugd23najaar/"
+		},
+		{
+			"naam": "Interne competitie 2022/23",
+			"soort": "Interne competitie",
+			"seizoen": 2023,
+			"url": "/ftp/intern20222023/"
+		},
+		{
+			"naam": "Rapid 2022/23 (rapid20222023)",
+			"soort": "Rapid",
+			"seizoen": 2023,
+			"url": "/ftp/rapid20222023/"
+		},
+		{
+			"naam": "Rapid 2022/23 (rapid2223)",
+			"soort": "Rapid",
+			"seizoen": 2023,
+			"url": "/ftp/rapid2223/"
+		},
+		{
+			"naam": "Snelschaak 2023",
+			"soort": "Snelschaak",
+			"seizoen": 2023,
+			"url": "/ftp/snelschaken2023/"
+		},
+		{
+			"naam": "Zomercompetitie 2023",
+			"soort": "Zomercompetitie",
+			"seizoen": 2023,
+			"url": "/ftp/simmer23/"
+		},
+		{
+			"naam": "Jeugd voorjaar 2023",
+			"soort": "Jeugd",
+			"seizoen": 2023,
+			"url": "/ftp/jeugd2023/"
+		},
+		{
+			"naam": "Interne competitie 2021/22",
+			"soort": "Interne competitie",
+			"seizoen": 2022,
+			"url": "/ftp/intern20212022/"
+		},
+		{
+			"naam": "Rapid 2021/22",
+			"soort": "Rapid",
+			"seizoen": 2022,
+			"url": "/ftp/rapid2022/"
+		},
+		{
+			"naam": "Snelschaak 2022 (snelschaak2022)",
+			"soort": "Snelschaak",
+			"seizoen": 2022,
+			"url": "/ftp/snelschaak2022/"
+		},
+		{
+			"naam": "Snelschaak 2022 (Snelschaak2022)",
+			"soort": "Snelschaak",
+			"seizoen": 2022,
+			"url": "/ftp/Snelschaak2022/"
+		},
+		{
+			"naam": "Zomercompetitie 2022 (zomer2021-2022)",
+			"soort": "Zomercompetitie",
+			"seizoen": 2022,
+			"url": "/ftp/zomer2021-2022/"
+		},
+		{
+			"naam": "Zomercompetitie 2022 (zomer2022)",
+			"soort": "Zomercompetitie",
+			"seizoen": 2022,
+			"url": "/ftp/zomer2022/"
+		},
+		{
+			"naam": "Zomercompetitie 2022 (Zomer2022)",
+			"soort": "Zomercompetitie",
+			"seizoen": 2022,
+			"url": "/ftp/Zomer2022/"
+		},
+		{
+			"naam": "Interne competitie 2020/21",
+			"soort": "Interne competitie",
+			"seizoen": 2021,
+			"url": "/ftp/intern20202021/"
+		},
+		{
+			"naam": "Zomercompetitie 2021",
+			"soort": "Zomercompetitie",
+			"seizoen": 2021,
+			"url": "/ftp/zomer2021/"
+		},
+		{
+			"naam": "Interne competitie 2019/20",
+			"soort": "Interne competitie",
+			"seizoen": 2020,
+			"url": "/ftp/intern20192020/"
+		},
+		{
+			"naam": "Rapid 2019/20",
+			"soort": "Rapid",
+			"seizoen": 2020,
+			"url": "/ftp/rapid20192020/"
+		},
+		{
+			"naam": "Interne competitie 2018/19",
+			"soort": "Interne competitie",
+			"seizoen": 2019,
+			"url": "/ftp/intern20182019/"
+		},
+		{
+			"naam": "Rapid 2018/19",
+			"soort": "Rapid",
+			"seizoen": 2019,
+			"url": "/ftp/rapid20182019/"
+		},
+		{
+			"naam": "FK 2019 groep A",
+			"soort": "FK 2019",
+			"seizoen": 2019,
+			"url": "/ftp/fkgroepa/"
+		},
+		{
+			"naam": "FK 2019 groep B",
+			"soort": "FK 2019",
+			"seizoen": 2019,
+			"url": "/ftp/fkgroepb/"
+		}
+	]
+}

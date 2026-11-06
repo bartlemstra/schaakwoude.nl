@@ -5,6 +5,7 @@ import Base from "../layouts/Base.astro";
 import Datumblok from "../components/Datumblok.astro";
 import { agendaItems } from "../lib/agenda";
 import { tijdstip } from "../lib/datum";
+import standen from "../data/standen.json";
 
 // Pagina's uit het CMS staan direct onder de root (/club, /jeugd, /fk2019, ...),
 // zodat de oude WordPress-adressen blijven werken.
@@ -21,6 +22,7 @@ if (slug === "jeugd") {
 	jeugdAgenda = res.entries.filter((a) => a.data.soort === "Jeugd" && new Date(a.data.begin).getTime() > Date.now()).slice(0, 6);
 }
 const teams = slug === "competitie" ? (await getEmDashCollection("teams", { orderBy: { volgorde: "asc" }, limit: 20 })).entries : [];
+const intern = standen.actueel.find((c) => c.soort === "Interne competitie");
 const heeftPartijen = (pagina.data.content ?? []).some((b: any) => b._type === "partij");
 ---
 <Base title={pagina.data.title} description={pagina.data.intro} content={{ collection: "pages", id: pagina.data.id, slug }}>
@@ -44,11 +46,19 @@ const heeftPartijen = (pagina.data.content ?? []).some((b: any) => b._type === "
 			)}
 			{slug === "competitie" && (
 				<aside class="artikel__zij">
-					<section class="paneel stapel">
-						<p class="oogje">Binnenkort</p>
-						<h2 style="font-size:1.15rem">Standen direct uit Clubstand</h2>
-						<p class="klein">De competitieleider voert straks de uitslagen in Clubstand in. Stand, indeling en uitslagen verschijnen dan meteen hier, en leden melden zich daar af voor een ronde.</p>
-					</section>
+					{intern?.stand && (
+						<section class="paneel stapel">
+							<p class="oogje">{intern.naam}</p>
+							<h2 style="font-size:1.15rem">Stand na {intern.stand.ronde.toLowerCase()}</h2>
+							<table class="tabel">
+								<tbody>
+									{intern.stand.rijen.slice(0, 8).map((r) => <tr><td class="n">{r[0]}</td><td>{r[1]}</td><td class="n">{r[intern.stand!.kolommen.indexOf("Score")]}</td></tr>)}
+								</tbody>
+							</table>
+							<a class="knop knop--klein" href="/standen">Alle standen en uitslagen</a>
+							<p class="gedempt klein">Straks komen stand, indeling en uitslagen rechtstreeks uit Clubstand, en melden leden zich daar af voor een ronde.</p>
+						</section>
+					)}
 					<section class="paneel stapel">
 						<h2 style="font-size:1.15rem">Externe competitie</h2>
 						<ul style="margin:0;padding-left:1.1em">

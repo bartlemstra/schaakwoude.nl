@@ -122,6 +122,7 @@ const ingelogd = !!Astro.locals.user;
 					<h2>{CLUB.naam}</h2>
 					<p>{CLUB.speeltijden}</p>
 					<p style="margin-top:.5rem">{CLUB.speelzaal.naam}<br />{CLUB.speelzaal.adres}, {CLUB.speelzaal.plaats}</p>
+					<p style="margin-top:.5rem"><a href={`mailto:${CLUB.email}`}>{CLUB.email}</a></p>
 				</div>
 				<div>
 					<h2>De club</h2>
