@@ -19,6 +19,6 @@ import { THEMAS } from "../lib/site";
 			knoppen.forEach(function (k) { k.setAttribute("aria-pressed", String(k.dataset.themaKnop === id)); });
 		}
 		knoppen.forEach(function (k) { k.addEventListener("click", function () { zet(k.dataset.themaKnop); }); });
-		zet(document.documentElement.dataset.thema);
+		zet(document.documentElement.dataset.thema || "fries");
 	})();
 </script>

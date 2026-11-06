@@ -2,10 +2,10 @@
 import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
 import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
 import { createPublicPageContext } from "emdash/page";
-import { Font } from "astro:assets";
 import Logo from "../components/Logo.astro";
 import ThemaKiezer from "../components/ThemaKiezer.astro";
 import { CLUB, THEMA, THEMA_KIEZER } from "../lib/site";
+import "../styles/lettertypes.css";
 import "../styles/themas.css";
 import "../styles/basis.css";
 
@@ -77,14 +77,6 @@ const ingelogd = !!Astro.locals.user;
 				})();
 			</script>
 		)}
-		{(THEMA_KIEZER || THEMA === "fries") && <Font cssVariable="--lt-fries-kop" preload={THEMA === "fries"} />}
-		{(THEMA_KIEZER || THEMA === "fries") && <Font cssVariable="--lt-fries-tekst" preload={THEMA === "fries"} />}
-		{(THEMA_KIEZER || THEMA === "clubblad") && <Font cssVariable="--lt-blad-kop" preload={THEMA === "clubblad"} />}
-		{(THEMA_KIEZER || THEMA === "clubblad") && <Font cssVariable="--lt-blad-tekst" preload={THEMA === "clubblad"} />}
-		{(THEMA_KIEZER || THEMA === "toernooi") && <Font cssVariable="--lt-toer-kop" preload={THEMA === "toernooi"} />}
-		{(THEMA_KIEZER || THEMA === "toernooi") && <Font cssVariable="--lt-toer-tekst" preload={THEMA === "toernooi"} />}
-		<Font cssVariable="--lt-mono" />
-		<Font cssVariable="--lt-schaak" />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="alternate" type="application/rss+xml" title={`${siteNaam}: nieuws`} href="/rss.xml" />
 		<link rel="alternate" type="text/calendar" title={`${siteNaam}: agenda`} href="/agenda.ics" />
