@@ -82,6 +82,18 @@ node migratie/sevilla.mjs <uitgepakte-map>/ftp
 Nog niet overgezet: de afbeeldingen (`wp-content/uploads`). Die staan nog op de oude
 hosting en worden gelinkt.
 
+## Preview
+
+De preview voor het bestuur draait op https://schaakwoude.bartlemstra.workers.dev, met
+themakiezer en `noindex` (ook op `/ftp`). Deploy de preview altijd met:
+
+```bash
+pnpm run deploy:preview
+```
+
+Gewone `pnpm run deploy` bouwt zonder themakiezer en zonder `noindex`: alleen voor de
+echte site.
+
 ## Live zetten (Cloudflare, gratis plan)
 
 ```bash
