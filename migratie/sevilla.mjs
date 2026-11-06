@@ -28,6 +28,9 @@ for (const naam of readdirSync(bron).sort()) {
 	if (!statSync(map).isDirectory()) continue;
 	// Mappen met spaties zijn oude dubbelingen of leeg
 	if (/\s/.test(naam)) continue;
+	// Mappen die alleen in hoofdletters verschillen botsen op macOS en Windows:
+	// alleen de kleine-letterversie houden (daar linken de oude berichten naar)
+	if (naam !== naam.toLowerCase() && readdirSync(bron).includes(naam.toLowerCase())) continue;
 	const bestanden = readdirSync(map).filter((f) => /\.(html|css)$/i.test(f));
 	if (!bestanden.length || !bestanden.includes("index.html")) continue;
 	mkdirSync(join(doel, naam), { recursive: true });

@@ -1545,16 +1545,10 @@
 			"url": "/ftp/rapid2022/"
 		},
 		{
-			"naam": "Snelschaak 2022 (snelschaak2022)",
+			"naam": "Snelschaak 2022",
 			"soort": "Snelschaak",
 			"seizoen": 2022,
 			"url": "/ftp/snelschaak2022/"
-		},
-		{
-			"naam": "Snelschaak 2022 (Snelschaak2022)",
-			"soort": "Snelschaak",
-			"seizoen": 2022,
-			"url": "/ftp/Snelschaak2022/"
 		},
 		{
 			"naam": "Zomercompetitie 2022 (zomer2021-2022)",
@@ -1567,12 +1561,6 @@
 			"soort": "Zomercompetitie",
 			"seizoen": 2022,
 			"url": "/ftp/zomer2022/"
-		},
-		{
-			"naam": "Zomercompetitie 2022 (Zomer2022)",
-			"soort": "Zomercompetitie",
-			"seizoen": 2022,
-			"url": "/ftp/Zomer2022/"
 		},
 		{
 			"naam": "Interne competitie 2020/21",
