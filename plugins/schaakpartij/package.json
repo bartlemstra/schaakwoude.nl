@@ -1,0 +1,15 @@
+{
+  "name": "@schaakwoude/schaakpartij",
+  "version": "0.1.0",
+  "private": true,
+  "description": "EmDash-plugin: een schaakpartij (PGN) of stelling (FEN) als blok in een bericht",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./astro": "./src/astro/index.ts"
+  },
+  "peerDependencies": {
+    "astro": ">=6",
+    "emdash": ">=1.4.0"
+  }
+}

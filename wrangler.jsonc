@@ -1,0 +1,25 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "schaakwoude",
+	"main": "./src/worker.ts",
+	"compatibility_date": "2026-02-24",
+	"compatibility_flags": ["nodejs_compat"],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "schaakwoude",
+			// Na `wrangler d1 create schaakwoude` het id hier invullen
+		},
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "schaakwoude-media",
+		},
+	],
+	// Gepland publiceren en onderhoud. Elke 5 minuten is genoeg en past ruim
+	// binnen het gratis plan (100.000 verzoeken per dag).
+	"triggers": {
+		"crons": ["*/5 * * * *"],
+	},
+}

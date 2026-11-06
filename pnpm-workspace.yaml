@@ -1,0 +1,8 @@
+packages:
+  - plugins/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - workerd
+  - sharp
+

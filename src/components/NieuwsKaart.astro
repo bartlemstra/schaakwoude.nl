@@ -1,0 +1,30 @@
+---
+import type { ContentEntry } from "emdash";
+import { datumKort } from "../lib/datum";
+import { aantalPartijen, eersteAfbeelding } from "../lib/inhoud";
+
+interface Props {
+	bericht: ContentEntry<any>;
+	groot?: boolean;
+	beeld?: boolean;
+}
+const { bericht, groot = false, beeld = true } = Astro.props;
+const d = bericht.data;
+const rubriek = d.terms?.category?.[0];
+const afbeelding = beeld ? (d.featured_image?.src ? { src: d.featured_image.src, alt: d.featured_image.alt ?? "" } : eersteAfbeelding(d.content)) : null;
+const partijen = aantalPartijen(d.content);
+const auteur = d.byline?.displayName;
+---
+<a class:list={["kaart", { "kaart--groot": groot }]} href={`/nieuws/${bericht.id}`}>
+	{afbeelding && (
+		<div class="kaart__beeld"><img src={afbeelding.src} alt={afbeelding.alt} loading="lazy" decoding="async" /></div>
+	)}
+	<div class="kaart__meta">
+		{rubriek && <span class="label">{rubriek.label}</span>}
+		{d.publishedAt && <time datetime={d.publishedAt.toISOString()}>{datumKort(d.publishedAt)}</time>}
+		{auteur && <span>· {auteur}</span>}
+	</div>
+	<h3>{d.title}</h3>
+	{d.excerpt && <p>{d.excerpt}</p>}
+	{partijen > 0 && <span class="label label--rood">♞ {partijen === 1 ? "1 partij" : `${partijen} partijen`}</span>}
+</a>

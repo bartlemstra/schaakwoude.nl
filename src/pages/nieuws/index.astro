@@ -1,0 +1,47 @@
+---
+import { getEmDashCollection, getTaxonomyTermsWithCacheHint } from "emdash";
+import Base from "../../layouts/Base.astro";
+import NieuwsKaart from "../../components/NieuwsKaart.astro";
+
+const rubriek = Astro.url.searchParams.get("rubriek") || undefined;
+const cursor = Astro.url.searchParams.get("cursor") || undefined;
+const [termen, berichten] = await Promise.all([
+	getTaxonomyTermsWithCacheHint("category"),
+	getEmDashCollection("posts", {
+		orderBy: { published_at: "desc" },
+		limit: 24,
+		cursor,
+		...(rubriek ? { where: { category: rubriek } } : {}),
+	}),
+]);
+if (Astro.cache?.enabled) {
+	Astro.cache.set(termen.cacheHint);
+	Astro.cache.set(berichten.cacheHint);
+}
+const huidig = termen.data.find((t) => t.slug === rubriek);
+const link = (r?: string) => (r ? `/nieuws?rubriek=${r}` : "/nieuws");
+const volgende = berichten.nextCursor
+	? `/nieuws?${new URLSearchParams({ ...(rubriek ? { rubriek } : {}), cursor: berichten.nextCursor })}`
+	: null;
+---
+<Base title={huidig ? `Nieuws: ${huidig.label}` : "Nieuws"} description="Verslagen, uitslagen en clubnieuws van Schaakwoude, sinds 2008.">
+	<div class="wrap">
+		<header class="paginakop">
+			<p class="oogje">Sinds 2008 · {cursor ? "ouder nieuws" : "nieuwste eerst"}</p>
+			<h1>{huidig ? huidig.label : "Nieuws"}</h1>
+			<nav class="filters" aria-label="Rubrieken">
+				<a href={link()} aria-current={!rubriek ? "page" : undefined}>Alles</a>
+				{termen.data.map((t) => <a href={link(t.slug)} aria-current={t.slug === rubriek ? "page" : undefined}>{t.label}</a>)}
+			</nav>
+		</header>
+		{berichten.entries.length === 0 ? (
+			<p class="gedempt">Geen berichten gevonden.</p>
+		) : (
+			<div class="nieuws-raster">{berichten.entries.map((b) => <NieuwsKaart bericht={b} />)}</div>
+		)}
+		<nav class="paginering" aria-label="Bladeren">
+			{cursor ? <a class="knop knop--rand" href={link(rubriek)}>Terug naar het nieuwste</a> : <span></span>}
+			{volgende && <a class="knop" href={volgende}>Ouder nieuws</a>}
+		</nav>
+	</div>
+</Base>

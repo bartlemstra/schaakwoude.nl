@@ -1,0 +1,24 @@
+---
+import { THEMAS } from "../lib/site";
+---
+<div class="topbalk">
+	<div class="wrap">
+		<b>Preview</b>
+		<span>Kies een thema voor de nieuwe site:</span>
+		<div class="themakiezer" role="group" aria-label="Thema">
+			{THEMAS.map((t) => <button type="button" data-thema-knop={t.id} title={t.omschrijving} aria-pressed="false">{t.naam}</button>)}
+		</div>
+	</div>
+</div>
+<script is:inline>
+	(function () {
+		var knoppen = document.querySelectorAll("[data-thema-knop]");
+		function zet(id) {
+			document.documentElement.dataset.thema = id;
+			try { localStorage.setItem("thema", id); } catch (e) {}
+			knoppen.forEach(function (k) { k.setAttribute("aria-pressed", String(k.dataset.themaKnop === id)); });
+		}
+		knoppen.forEach(function (k) { k.addEventListener("click", function () { zet(k.dataset.themaKnop); }); });
+		zet(document.documentElement.dataset.thema);
+	})();
+</script>

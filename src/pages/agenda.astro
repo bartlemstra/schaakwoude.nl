@@ -1,0 +1,59 @@
+---
+import Base from "../layouts/Base.astro";
+import Datumblok from "../components/Datumblok.astro";
+import { agendaItems, SOORT_LABEL } from "../lib/agenda";
+import { maandNaam, maandSleutel, tijdstip } from "../lib/datum";
+
+const archief = Astro.url.searchParams.get("toon") === "archief";
+const soort = Astro.url.searchParams.get("soort") || undefined;
+const res = await agendaItems();
+if (Astro.cache?.enabled) Astro.cache.set(res.cacheHint);
+
+const grens = Date.now() - 6 * 3600_000;
+let items = res.entries.filter((a) => (new Date(a.data.begin).getTime() >= grens) !== archief);
+if (archief) items.reverse();
+const soorten = [...new Set(items.map((a) => a.data.soort))].filter(Boolean);
+if (soort) items = items.filter((a) => a.data.soort === soort);
+
+const perMaand = new Map<string, typeof items>();
+for (const a of items) {
+	const k = maandSleutel(a.data.begin);
+	perMaand.set(k, [...(perMaand.get(k) ?? []), a]);
+}
+const link = (s?: string) => `/agenda?${new URLSearchParams({ ...(archief ? { toon: "archief" } : {}), ...(s ? { soort: s } : {}) })}`.replace(/\?$/, "");
+---
+<Base title="Agenda" description="Clubavonden, competitierondes, wedstrijden en toernooien van Schaakwoude.">
+	<div class="wrap">
+		<header class="paginakop">
+			<p class="oogje">{archief ? "Wat er al gespeeld is" : "Wat er komt"}</p>
+			<h1>Agenda</h1>
+			<p class="lead">Elke donderdag clubavond in {`De Wâlden`}. Zet de agenda in je eigen kalender met de <a href="/agenda.ics">agenda-link</a> (werkt met Google Agenda, Outlook en de iPhone).</p>
+			<nav class="filters" aria-label="Filter">
+				<a href={link()} aria-current={!soort ? "page" : undefined}>Alles</a>
+				{soorten.map((s) => <a href={link(s)} aria-current={s === soort ? "page" : undefined}>{SOORT_LABEL[s] ?? s}</a>)}
+			</nav>
+		</header>
+		<div class="stapel" style="gap:2rem">
+			{perMaand.size === 0 && <p class="gedempt">Er staat nog niets in de agenda.</p>}
+			{[...perMaand].map(([maand, lijst]) => (
+				<section class="agenda-maand">
+					<h2>{maandNaam(maand)}</h2>
+					<ul class="agenda-lijst">
+						{lijst.map((a) => (
+							<li class:list={["agenda-item", { uitgelicht: a.data.uitgelicht }]} id={a.id}>
+								<Datumblok datum={a.data.begin} />
+								<div class="wat">
+									<b>{a.data.link ? <a href={a.data.link}>{a.data.title}</a> : a.data.title}</b>
+									<span class="gedempt klein">{!a.data.hele_dag && `${tijdstip(a.data.begin)} uur`}{!a.data.hele_dag && a.data.locatie && " · "}{a.data.locatie}</span>
+									{a.data.omschrijving && <span class="klein">{a.data.omschrijving}</span>}
+								</div>
+								<span class:list={["label", { "label--rood": a.data.uitgelicht }]}>{SOORT_LABEL[a.data.soort] ?? a.data.soort}</span>
+							</li>
+						))}
+					</ul>
+				</section>
+			))}
+		</div>
+		<p style="margin-top:2rem">{archief ? <a href="/agenda">Naar de komende activiteiten</a> : <a href="/agenda?toon=archief">Bekijk wat er al geweest is</a>}</p>
+	</div>
+</Base>

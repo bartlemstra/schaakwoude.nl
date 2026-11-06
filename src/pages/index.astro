@@ -1,0 +1,146 @@
+---
+import { getEmDashCollection, getEmDashEntry } from "emdash";
+import Base from "../layouts/Base.astro";
+import NieuwsKaart from "../components/NieuwsKaart.astro";
+import Datumblok from "../components/Datumblok.astro";
+import { blockComponents } from "@schaakwoude/schaakpartij/astro";
+import { ARCHIEFPARTIJ, CLUB, STANDEN } from "../lib/site";
+import { tijdstip } from "../lib/datum";
+
+const Partij = blockComponents.partij;
+const nu = Date.now();
+const [nieuws, agenda, teams, sponsors, archief] = await Promise.all([
+	getEmDashCollection("posts", { orderBy: { published_at: "desc" }, limit: 7 }),
+	getEmDashCollection("agenda", { orderBy: { begin: "desc" }, limit: 60 }),
+	getEmDashCollection("teams", { orderBy: { volgorde: "asc" }, limit: 20 }),
+	getEmDashCollection("sponsors", { orderBy: { volgorde: "asc" }, limit: 50 }),
+	getEmDashEntry(ARCHIEFPARTIJ.collectie, ARCHIEFPARTIJ.slug),
+]);
+for (const r of [nieuws, agenda, teams, sponsors, archief]) if (Astro.cache?.enabled) Astro.cache.set(r.cacheHint);
+
+const binnenkort = agenda.entries
+	.filter((a) => new Date(a.data.begin).getTime() >= nu - 3 * 3600_000 && a.data.soort !== "Vakantie")
+	.reverse()
+	.slice(0, 5);
+const [hoofd, ...overig] = nieuws.entries;
+const archiefPartij = (archief.entry?.data.content ?? []).filter((b: any) => b._type === "partij")[ARCHIEFPARTIJ.index];
+const seizoenen = new Date().getFullYear() - CLUB.opgericht + (new Date().getMonth() >= 7 ? 1 : 0);
+---
+<Base>
+	<section class="hero">
+		<div class="wrap hero__raster">
+			<div class="hero__tekst">
+				<p class="oogje">Schaakvereniging sinds {CLUB.opgericht} · {CLUB.plaats}</p>
+				<h1>Elke donderdag <em>schaken</em> in Damwâld.</h1>
+				<p class="lead">Jeugd van 18.45 tot 19.45 uur, senioren daarna, in het gebouw van ijsclub De Wâlden. Iedereen is welkom, ook om eerst een avond te komen kijken.</p>
+				<div class="knoppen">
+					<a class="knop" href="/lid-worden">Kom een avond meedoen</a>
+					<a class="knop knop--rand" href="/competitie">Competitie en standen</a>
+				</div>
+				<dl class="feiten">
+					<div><dt>Teams</dt><dd>{teams.entries.filter((t) => t.data.bond === "KNSB").length} KNSB · {teams.entries.filter((t) => t.data.bond === "FSB").length} FSB</dd></div>
+					<div><dt>Clubhistorie</dt><dd>{seizoenen} seizoenen</dd></div>
+					<div><dt>Speelavond</dt><dd>Donderdag</dd></div>
+				</dl>
+			</div>
+			<aside class="paneel binnenkort" aria-labelledby="binnenkort">
+				<div class="kopregel" style="margin-bottom:.5rem"><h2 id="binnenkort" style="font-size:1.3rem">Binnenkort</h2><a class="klein" href="/agenda">Hele agenda</a></div>
+				{binnenkort.length === 0 && <p class="gedempt">De agenda voor de komende weken staat nog niet online.</p>}
+				<ol>
+					{binnenkort.map((a) => (
+						<li class:list={{ uitgelicht: a.data.uitgelicht }}>
+							<Datumblok datum={a.data.begin} />
+							<div>
+								{a.data.link ? <a class="titel" href={a.data.link}>{a.data.title}</a> : <p class="titel">{a.data.title}</p>}
+								<p class="gedempt klein">{!a.data.hele_dag && `${tijdstip(a.data.begin)} uur`}{a.data.locatie && ` · ${a.data.locatie}`}</p>
+							</div>
+						</li>
+					))}
+				</ol>
+			</aside>
+		</div>
+	</section>
+
+	<section class="sectie">
+		<div class="wrap">
+			<div class="kopregel"><h2>Laatste nieuws</h2><a href="/nieuws">Alle berichten</a></div>
+			{hoofd && (
+				<div class="nieuws-uitgelicht">
+					<NieuwsKaart bericht={hoofd} groot />
+					<div class="rest">
+						{overig.slice(0, 3).map((b) => <NieuwsKaart bericht={b} beeld={false} />)}
+					</div>
+				</div>
+			)}
+		</div>
+	</section>
+
+	<section class="sectie">
+		<div class="wrap">
+			<div class="kopregel"><h2>Competitie</h2><a href="/teams">Alle teams</a></div>
+			<div class="competitie-tegels">
+				<a class="tegel" href="/competitie">
+					<span class="label">Intern</span>
+					<b>Interne competitie</b>
+					<span class="gedempt klein">Keizer, 27 ronden op donderdag. {STANDEN[0]?.naam}: stand en uitslagen.</span>
+				</a>
+				{teams.entries.map((t) => (
+					<a class="tegel" href={`/teams#${t.id}`}>
+						<span class="label">{t.data.bond}</span>
+						<b>{t.data.title}</b>
+						<span class="gedempt klein">{(t.data.spelers ?? []).length} spelers{t.data.teamleider && ` · teamleider ${t.data.teamleider.split(" ")[0]}`}</span>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	{archiefPartij && (
+		<section class="sectie">
+			<div class="wrap">
+				<div class="kopregel">
+					<div><p class="oogje">Uit het archief</p><h2>Speel een partij na</h2></div>
+					<a href={`/${ARCHIEFPARTIJ.slug}`}>{archief.entry?.data.title}</a>
+				</div>
+				<Partij node={archiefPartij} />
+				<p class="gedempt klein" style="margin-top:.75rem">Leden plakken een PGN in hun verslag en de site maakt er zelf een bord van. Het archief bevat ruim 270 partijen van de club.</p>
+			</div>
+		</section>
+	)}
+
+	<section class="sectie">
+		<div class="wrap">
+			<div class="uitnodiging">
+				<div class="stapel">
+					<h2>Zin om te schaken?</h2>
+					<p>Kom gerust een donderdagavond langs en speel een paar avonden gratis mee, met een bord en klok van de club. Voor kinderen van 6 tot 16 jaar is er les volgens de Stappenmethode.</p>
+					<div class="knoppen"><a class="knop" href="/lid-worden">Lid worden</a><a class="knop knop--rand" href="/jeugd">Over jeugdschaak</a></div>
+				</div>
+				<div class="stapel">
+					<p class="oogje">Speelzaal</p>
+					<p><b>{CLUB.speelzaal.naam}</b><br />{CLUB.speelzaal.adres}<br />{CLUB.speelzaal.plaats}</p>
+					<p class="gedempt klein">KNSB-thuiswedstrijden op zaterdag in {CLUB.knsbZaal.naam}, Wâlterswâld.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{sponsors.entries.length > 0 && (
+		<section class="sectie">
+			<div class="wrap">
+				<div class="kopregel"><h2>Onze sponsors</h2><a href="/sponsors">Sponsor worden</a></div>
+				<ul class="sponsorstrook">
+					{sponsors.entries.map((s) => {
+						const logo = s.data.logo?.src;
+						const inhoud = logo ? <img src={logo} alt={s.data.title} loading="lazy" /> : s.data.title;
+						return (
+							<li class:list={{ hoofd: s.data.niveau === "Hoofdsponsor" }}>
+								{s.data.website ? <a href={s.data.website} rel="noopener sponsored">{inhoud}</a> : <span>{inhoud}</span>}
+							</li>
+						);
+					})}
+				</ul>
+			</div>
+		</section>
+	)}
+</Base>

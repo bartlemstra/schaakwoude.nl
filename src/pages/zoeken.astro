@@ -1,0 +1,40 @@
+---
+import { search } from "emdash";
+import Base from "../layouts/Base.astro";
+
+const q = (Astro.url.searchParams.get("q") ?? "").trim();
+let resultaten: any[] = [];
+let fout = false;
+if (q) {
+	try {
+		const res = await search(q, { collections: ["posts", "pages", "eregalerij"], limit: 30 });
+		resultaten = res.items;
+	} catch (e) {
+		console.error(e);
+		fout = true;
+	}
+}
+const url = (r: any) => (r.collection === "posts" ? `/nieuws/${r.slug}` : r.collection === "eregalerij" ? `/eregalerij#${r.slug}` : `/${r.slug}`);
+---
+<Base title={q ? `Zoeken: ${q}` : "Zoeken"}>
+	<div class="wrap smal" style="margin-inline:auto">
+		<header class="paginakop">
+			<h1>Zoeken</h1>
+			<form action="/zoeken" method="get" role="search" style="display:flex;gap:8px;flex-wrap:wrap">
+				<label class="sr-only" for="q">Zoekterm</label>
+				<input id="q" name="q" value={q} placeholder="Naam, toernooi, tegenstander…" style="flex:1;min-width:200px;font:inherit;padding:10px 12px;border:1.5px solid var(--lijn);border-radius:var(--hoek);background:var(--vlak);color:var(--inkt)" />
+				<button class="knop" type="submit">Zoek</button>
+			</form>
+		</header>
+		{fout && <p class="gedempt">Zoeken is even niet beschikbaar.</p>}
+		{q && !fout && <p class="gedempt" style="margin-bottom:1rem">{resultaten.length} resultaten in 18 jaar nieuws, pagina's en de eregalerij.</p>}
+		<ul class="stapel" style="list-style:none;padding:0;margin:0">
+			{resultaten.map((r) => (
+				<li class="kaart">
+					<a href={url(r)} style="font-weight:700;font-size:1.1rem">{r.title ?? r.slug}</a>
+					{r.snippet && <p set:html={r.snippet} />}
+				</li>
+			))}
+		</ul>
+	</div>
+</Base>

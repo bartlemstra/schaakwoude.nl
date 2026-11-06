@@ -1,0 +1,279 @@
+/*
+ * Drie themes op dezelfde opmaak. Elk thema zet alleen tokens (kleuren,
+ * lettertypes, vormen) en een paar accenten; de structuur staat in basis.css.
+ * Het actieve thema staat op <html data-thema="...">.
+ */
+
+/* ---------- Fries: helder, Friese-vlagblauw met pompeblêd-rood ---------- */
+:root,
+[data-thema="fries"] {
+	--papier: #f3f5f8;
+	--vlak: #ffffff;
+	--inkt: #12203a;
+	--gedempt: #56667e;
+	--lijn: #d9e0e8;
+	--accent: #1c5aa4;
+	--accent-inkt: #ffffff;
+	--accent-2: #c4122f;
+	--tint: #e6eef8;
+	--voet: #12203a;
+	--voet-inkt: #f3f5f8;
+	--veld-licht: #e5eaf0;
+	--veld-donker: #8ba0b7;
+	--stuk-wit: #ffffff;
+	--stuk-zwart: #12203a;
+	--notitie: #fff6d9;
+	--notitie-inkt: #6b4e00;
+
+	--lt-kop: var(--lt-fries-kop), "Segoe UI", system-ui, sans-serif;
+	--lt-tekst: var(--lt-fries-tekst), "Segoe UI", system-ui, sans-serif;
+	--lt-data: var(--lt-mono), ui-monospace, monospace;
+
+	--kop-gewicht: 750;
+	--kop-spatie: -0.015em;
+	--kop-transform: none;
+	--hoek: 10px;
+	--hoek-knop: 999px;
+	--rand: 1px;
+	--schaduw: none;
+	--rand-kleur-hover: var(--accent);
+}
+@media (prefers-color-scheme: dark) {
+	[data-thema="fries"]:not([data-licht]) {
+		--papier: #0b1424;
+		--vlak: #121e33;
+		--inkt: #e5ebf3;
+		--gedempt: #9aaac0;
+		--lijn: #233350;
+		--accent: #6aa5ea;
+		--accent-inkt: #0b1424;
+		--accent-2: #ff6b7d;
+		--tint: #172a46;
+		--voet: #060c17;
+		--voet-inkt: #e5ebf3;
+		--veld-licht: #c3cfdc;
+		--veld-donker: #5a7494;
+		--stuk-zwart: #0d1626;
+		--notitie: #3a3016;
+		--notitie-inkt: #f3d98a;
+		color-scheme: dark;
+	}
+}
+[data-thema="fries"] .vlagband {
+	height: 7px;
+	background: repeating-linear-gradient(135deg, var(--accent) 0 14px, var(--vlak) 14px 28px);
+}
+
+/* ---------- Clubblad: klassiek, krantenkop, groen en messing ---------- */
+[data-thema="clubblad"] {
+	--papier: #f5efe3;
+	--vlak: #fbf8f1;
+	--inkt: #231c14;
+	--gedempt: #6b5f50;
+	--lijn: #d8ccb6;
+	--accent: #1f4d3a;
+	--accent-inkt: #fbf8f1;
+	--accent-2: #a2652a;
+	--tint: #ebe3d2;
+	--voet: #1f4d3a;
+	--voet-inkt: #f5efe3;
+	--veld-licht: #efe4cc;
+	--veld-donker: #6f8a6a;
+	--stuk-wit: #fffdf7;
+	--stuk-zwart: #231c14;
+	--notitie: #f7e7b5;
+	--notitie-inkt: #5b4300;
+
+	--lt-kop: var(--lt-blad-kop), Georgia, "Times New Roman", serif;
+	--lt-tekst: var(--lt-blad-tekst), Georgia, "Times New Roman", serif;
+	--lt-data: var(--lt-mono), ui-monospace, monospace;
+
+	--kop-gewicht: 700;
+	--kop-spatie: -0.01em;
+	--kop-transform: none;
+	--hoek: 2px;
+	--hoek-knop: 2px;
+	--rand: 1px;
+	--schaduw: none;
+	--rand-kleur-hover: var(--inkt);
+}
+@media (prefers-color-scheme: dark) {
+	[data-thema="clubblad"]:not([data-licht]) {
+		--papier: #1b1813;
+		--vlak: #23201a;
+		--inkt: #efe6d6;
+		--gedempt: #b3a58f;
+		--lijn: #3d362b;
+		--accent: #8cc5a6;
+		--accent-inkt: #14211b;
+		--accent-2: #e0a666;
+		--tint: #2c2820;
+		--voet: #12100c;
+		--voet-inkt: #efe6d6;
+		--veld-licht: #d9ccae;
+		--veld-donker: #5f7a5a;
+		--notitie: #3d3214;
+		--notitie-inkt: #f2d98c;
+		color-scheme: dark;
+	}
+}
+
+/* ---------- Toernooi: donker, sportief, smalle kapitalen ---------- */
+[data-thema="toernooi"] {
+	--papier: #0e1014;
+	--vlak: #171a21;
+	--inkt: #eef0f3;
+	--gedempt: #9aa1ad;
+	--lijn: #2a2f3a;
+	--accent: #d4f53c;
+	--accent-inkt: #11140a;
+	--accent-2: #ff6a3d;
+	--tint: #20242d;
+	--voet: #08090c;
+	--voet-inkt: #eef0f3;
+	--veld-licht: #c9ced6;
+	--veld-donker: #4d5768;
+	--stuk-wit: #ffffff;
+	--stuk-zwart: #0e1014;
+	--notitie: #3b3a12;
+	--notitie-inkt: #f1ee9a;
+
+	--lt-kop: var(--lt-toer-kop), "Arial Narrow", system-ui, sans-serif;
+	--lt-tekst: var(--lt-toer-tekst), system-ui, sans-serif;
+	--lt-data: var(--lt-mono), ui-monospace, monospace;
+
+	--kop-gewicht: 800;
+	--kop-spatie: 0.005em;
+	--kop-transform: uppercase;
+	--hoek: 4px;
+	--hoek-knop: 4px;
+	--rand: 1px;
+	--schaduw: none;
+	--rand-kleur-hover: var(--accent);
+	color-scheme: dark;
+}
+
+/* ---------- Thema-accenten in de structuur ---------- */
+
+/* Clubblad: kop als krantenkop, gecentreerd, met regels */
+[data-thema="clubblad"] .kop .wrap {
+	flex-direction: column;
+	gap: 0.6rem;
+	padding-block: 1.1rem 0;
+}
+[data-thema="clubblad"] .merk {
+	flex-direction: column;
+	text-align: center;
+	gap: 0.3rem;
+}
+[data-thema="clubblad"] .merk__logo { display: none; }
+[data-thema="clubblad"] .merk__naam {
+	font-size: clamp(2.2rem, 6vw, 3.6rem);
+	font-weight: 900;
+	letter-spacing: -0.02em;
+	font-style: italic;
+}
+[data-thema="clubblad"] .merk__sub {
+	font-family: var(--lt-tekst);
+	font-style: italic;
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 0.95rem;
+}
+[data-thema="clubblad"] .hoofdnav {
+	width: 100%;
+	justify-content: center;
+	border-top: 3px double var(--inkt);
+	border-bottom: 1px solid var(--inkt);
+	padding-block: 2px;
+}
+[data-thema="clubblad"] .hoofdnav a {
+	border-radius: 0;
+	font-family: var(--lt-tekst);
+	font-variant: small-caps;
+	letter-spacing: 0.04em;
+	font-size: 1.05rem;
+}
+[data-thema="clubblad"] .hoofdnav a[aria-current] { background: none; text-decoration: underline; text-underline-offset: 6px; }
+[data-thema="clubblad"] .kop { border-bottom: 0; position: static; }
+[data-thema="clubblad"] .kop__knop { display: none; }
+@media (max-width: 920px) {
+	[data-thema="clubblad"] .kop .wrap { flex-direction: row; padding-block: 0.8rem; }
+	[data-thema="clubblad"] .merk { text-align: left; }
+	[data-thema="clubblad"] .merk__naam { font-size: 1.7rem; }
+}
+[data-thema="clubblad"] .oogje {
+	font-family: var(--lt-tekst);
+	font-style: italic;
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 0.95rem;
+	color: var(--accent-2);
+}
+[data-thema="clubblad"] .kaart,
+[data-thema="clubblad"] .paneel { border-color: transparent; border-top: 2px solid var(--inkt); background: transparent; padding-inline: 0; }
+[data-thema="clubblad"] .kaart:hover { border-color: transparent; border-top-color: var(--accent); }
+[data-thema="clubblad"] .nieuws-uitgelicht .kaart--groot h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-style: italic; }
+[data-thema="clubblad"] .hero { background: transparent; border-bottom: 1px solid var(--inkt); }
+[data-thema="clubblad"] .hero h1 { font-style: italic; font-weight: 900; }
+[data-thema="clubblad"] .label {
+	background: none;
+	padding: 0;
+	color: var(--accent-2);
+	font-family: var(--lt-tekst);
+	font-style: italic;
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+[data-thema="clubblad"] .tabel th { background: transparent; border-bottom: 2px solid var(--inkt); }
+[data-thema="clubblad"] .tabel-wrap { border: 0; background: transparent; }
+[data-thema="clubblad"] .uitnodiging { background: var(--tint); color: var(--inkt); }
+[data-thema="clubblad"] .uitnodiging .knop { background: var(--accent); color: var(--accent-inkt); border-color: var(--accent); }
+[data-thema="clubblad"] .uitnodiging .knop--rand { background: transparent; color: var(--accent); }
+[data-thema="clubblad"] .uitnodiging::after { display: none; }
+[data-thema="clubblad"] .prose > p:first-of-type::first-letter {
+	float: left;
+	font-family: var(--lt-kop);
+	font-size: 3.4em;
+	line-height: 0.85;
+	padding: 0.05em 0.08em 0 0;
+	color: var(--accent);
+	font-weight: 900;
+}
+
+/* Toernooi: smalle kapitalen, accentbalken, scorebord-tabellen */
+[data-thema="toernooi"] h1,
+[data-thema="toernooi"] h2,
+[data-thema="toernooi"] h3 { line-height: 1; }
+[data-thema="toernooi"] h1 { font-size: clamp(2.8rem, 8vw, 5.2rem); }
+[data-thema="toernooi"] .kop { background: var(--papier); border-bottom: 1px solid var(--lijn); }
+[data-thema="toernooi"] .merk__naam { text-transform: uppercase; font-size: 1.6rem; letter-spacing: 0.02em; }
+[data-thema="toernooi"] .hoofdnav a {
+	text-transform: uppercase;
+	font-family: var(--lt-kop);
+	font-size: 1.1rem;
+	letter-spacing: 0.04em;
+	border-radius: 0;
+	border-bottom: 3px solid transparent;
+}
+[data-thema="toernooi"] .hoofdnav a:hover { background: none; border-bottom-color: var(--lijn); }
+[data-thema="toernooi"] .hoofdnav a[aria-current] { background: none; color: var(--inkt); border-bottom-color: var(--accent); }
+[data-thema="toernooi"] .hero {
+	background:
+		linear-gradient(90deg, var(--papier) 40%, transparent),
+		repeating-conic-gradient(var(--tint) 0 25%, var(--papier) 0 50%) 0 0 / 72px 72px;
+	border-bottom: 4px solid var(--accent);
+}
+[data-thema="toernooi"] .hero h1 em { font-style: normal; color: var(--accent); }
+[data-thema="toernooi"] .kaart { border-left: 4px solid var(--lijn); }
+[data-thema="toernooi"] .kaart:hover { border-left-color: var(--accent); }
+[data-thema="toernooi"] .kaart h3 { text-transform: none; font-size: 1.45rem; }
+[data-thema="toernooi"] .label { border-radius: 2px; background: var(--accent); color: var(--accent-inkt); }
+[data-thema="toernooi"] .tabel td.n { color: var(--accent); }
+[data-thema="toernooi"] .uitnodiging { background: var(--accent); color: var(--accent-inkt); }
+[data-thema="toernooi"] .uitnodiging .knop { background: var(--accent-inkt); color: var(--accent); border-color: var(--accent-inkt); }
+[data-thema="toernooi"] .uitnodiging .knop--rand { background: transparent; color: var(--accent-inkt); }
+[data-thema="toernooi"] .datumblok { background: var(--accent); color: var(--accent-inkt); border-color: var(--accent); }
+[data-thema="toernooi"] .partij__zetten button.aan { color: var(--accent-inkt); }

@@ -1,0 +1,6 @@
+---
+import { datumDelen } from "../lib/datum";
+interface Props { datum: Date | string }
+const d = datumDelen(Astro.props.datum);
+---
+<div class="datumblok" aria-hidden="true"><span>{d.dag}</span><b>{d.nummer}</b><span>{d.maand}</span></div>

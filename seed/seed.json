@@ -1,0 +1,502 @@
+{
+ "$schema": "https://emdashcms.com/seed.schema.json",
+ "version": "1",
+ "meta": {
+  "name": "Schaakwoude",
+  "description": "Website van Schaakvereniging Schaakwoude in Damwâld",
+  "author": "Schaakvereniging Schaakwoude"
+ },
+ "settings": {
+  "title": "Schaakwoude",
+  "tagline": "Waar passie voor schaken en gezelligheid samenkomen",
+  "postsPerPage": 12,
+  "timezone": "Europe/Amsterdam",
+  "dateFormat": "d MMMM yyyy"
+ },
+ "collections": [
+  {
+   "slug": "posts",
+   "label": "Nieuws",
+   "labelSingular": "Bericht",
+   "urlPattern": "/nieuws/{slug}",
+   "supports": [
+    "drafts",
+    "revisions",
+    "preview",
+    "scheduling",
+    "search",
+    "seo"
+   ],
+   "fields": [
+    {
+     "slug": "title",
+     "label": "Titel",
+     "type": "string",
+     "required": true,
+     "searchable": true
+    },
+    {
+     "slug": "excerpt",
+     "label": "Samenvatting",
+     "type": "text",
+     "searchable": true
+    },
+    {
+     "slug": "featured_image",
+     "label": "Afbeelding bovenaan",
+     "type": "image"
+    },
+    {
+     "slug": "content",
+     "label": "Tekst",
+     "type": "portableText",
+     "searchable": true
+    }
+   ]
+  },
+  {
+   "slug": "pages",
+   "label": "Pagina's",
+   "labelSingular": "Pagina",
+   "urlPattern": "/{slug}",
+   "supports": [
+    "drafts",
+    "revisions",
+    "preview",
+    "search",
+    "seo"
+   ],
+   "fields": [
+    {
+     "slug": "title",
+     "label": "Titel",
+     "type": "string",
+     "required": true,
+     "searchable": true
+    },
+    {
+     "slug": "intro",
+     "label": "Inleiding",
+     "type": "text"
+    },
+    {
+     "slug": "content",
+     "label": "Tekst",
+     "type": "portableText",
+     "searchable": true
+    }
+   ]
+  },
+  {
+   "slug": "agenda",
+   "label": "Agenda",
+   "labelSingular": "Activiteit",
+   "urlPattern": "/agenda#{slug}",
+   "supports": [
+    "drafts",
+    "search"
+   ],
+   "fields": [
+    {
+     "slug": "title",
+     "label": "Wat",
+     "type": "string",
+     "required": true,
+     "searchable": true
+    },
+    {
+     "slug": "begin",
+     "label": "Begint",
+     "type": "datetime",
+     "required": true,
+     "indexed": true
+    },
+    {
+     "slug": "eind",
+     "label": "Eindigt",
+     "type": "datetime"
+    },
+    {
+     "slug": "hele_dag",
+     "label": "Hele dag (geen tijd tonen)",
+     "type": "boolean"
+    },
+    {
+     "slug": "soort",
+     "label": "Soort",
+     "type": "select",
+     "required": true,
+     "defaultValue": "Clubavond",
+     "validation": {
+      "options": [
+       "Clubavond",
+       "Interne competitie",
+       "Jeugd",
+       "KNSB",
+       "FSB",
+       "Toernooi",
+       "Club",
+       "Vergadering",
+       "Vakantie"
+      ]
+     }
+    },
+    {
+     "slug": "locatie",
+     "label": "Waar",
+     "type": "string"
+    },
+    {
+     "slug": "omschrijving",
+     "label": "Toelichting",
+     "type": "text"
+    },
+    {
+     "slug": "link",
+     "label": "Meer informatie (link)",
+     "type": "string"
+    },
+    {
+     "slug": "uitgelicht",
+     "label": "Uitlichten op de voorpagina",
+     "type": "boolean"
+    }
+   ]
+  },
+  {
+   "slug": "teams",
+   "label": "Teams",
+   "labelSingular": "Team",
+   "urlPattern": "/teams#{slug}",
+   "supports": [
+    "drafts"
+   ],
+   "fields": [
+    {
+     "slug": "title",
+     "label": "Teamnaam",
+     "type": "string",
+     "required": true,
+     "searchable": true
+    },
+    {
+     "slug": "bond",
+     "label": "Bond",
+     "type": "select",
+     "required": true,
+     "validation": {
+      "options": [
+       "KNSB",
+       "FSB"
+      ]
+     }
+    },
+    {
+     "slug": "klasse",
+     "label": "Klasse",
+     "type": "string"
+    },
+    {
+     "slug": "teamleider",
+     "label": "Teamleider",
+     "type": "string"
+    },
+    {
+     "slug": "spelers",
+     "label": "Spelers",
+     "type": "repeater",
+     "validation": {
+      "subFields": [
+       {
+        "slug": "naam",
+        "label": "Naam",
+        "type": "string",
+        "required": true
+       }
+      ],
+      "maxItems": 20
+     }
+    },
+    {
+     "slug": "netstand_url",
+     "label": "Uitslagen en stand (netstand-link)",
+     "type": "url"
+    },
+    {
+     "slug": "volgorde",
+     "label": "Volgorde",
+     "type": "integer"
+    },
+    {
+     "slug": "content",
+     "label": "Toelichting",
+     "type": "portableText"
+    }
+   ]
+  },
+  {
+   "slug": "sponsors",
+   "label": "Sponsors",
+   "labelSingular": "Sponsor",
+   "urlPattern": "/sponsors#{slug}",
+   "supports": [
+    "drafts"
+   ],
+   "fields": [
+    {
+     "slug": "title",
+     "label": "Naam",
+     "type": "string",
+     "required": true,
+     "searchable": true
+    },
+    {
+     "slug": "logo",
+     "label": "Logo",
+     "type": "image"
+    },
+    {
+     "slug": "website",
+     "label": "Website",
+     "type": "url"
+    },
+    {
+     "slug": "niveau",
+     "label": "Soort",
+     "type": "select",
+     "required": true,
+     "defaultValue": "Sponsor",
+     "validation": {
+      "options": [
+       "Hoofdsponsor",
+       "Sponsor",
+       "Vriend van de club"
+      ]
+     }
+    },
+    {
+     "slug": "volgorde",
+     "label": "Volgorde",
+     "type": "integer"
+    }
+   ]
+  },
+  {
+   "slug": "eregalerij",
+   "label": "Eregalerij",
+   "labelSingular": "Seizoen",
+   "urlPattern": "/eregalerij#{slug}",
+   "supports": [
+    "search"
+   ],
+   "fields": [
+    {
+     "slug": "title",
+     "label": "Seizoen (bijv. 2025/2026)",
+     "type": "string",
+     "required": true,
+     "searchable": true
+    },
+    {
+     "slug": "intern_1",
+     "label": "Clubkampioen",
+     "type": "string",
+     "searchable": true
+    },
+    {
+     "slug": "intern_2",
+     "label": "Interne competitie, 2e",
+     "type": "string",
+     "searchable": true
+    },
+    {
+     "slug": "intern_3",
+     "label": "Interne competitie, 3e",
+     "type": "string",
+     "searchable": true
+    },
+    {
+     "slug": "rapid",
+     "label": "Rapidkampioen",
+     "type": "string",
+     "searchable": true
+    },
+    {
+     "slug": "snelschaak",
+     "label": "Snelschaakkampioen",
+     "type": "string",
+     "searchable": true
+    },
+    {
+     "slug": "zomer",
+     "label": "Zomercompetitie",
+     "type": "string",
+     "searchable": true
+    },
+    {
+     "slug": "jeugd",
+     "label": "Jeugdkampioen",
+     "type": "string",
+     "searchable": true
+    }
+   ]
+  },
+  {
+   "slug": "ereleden",
+   "label": "Ereleden",
+   "labelSingular": "Erelid",
+   "urlPattern": "/eregalerij#{slug}",
+   "fields": [
+    {
+     "slug": "title",
+     "label": "Naam",
+     "type": "string",
+     "required": true,
+     "searchable": true
+    },
+    {
+     "slug": "eretitel",
+     "label": "Titel",
+     "type": "string",
+     "required": true
+    },
+    {
+     "slug": "sinds",
+     "label": "Sinds (jaar)",
+     "type": "integer"
+    }
+   ]
+  }
+ ],
+ "taxonomies": [
+  {
+   "name": "category",
+   "label": "Rubrieken",
+   "labelSingular": "Rubriek",
+   "hierarchical": false,
+   "collections": [
+    "posts"
+   ],
+   "terms": [
+    {
+     "slug": "clubnieuws",
+     "label": "Clubnieuws"
+    },
+    {
+     "slug": "interne-competitie",
+     "label": "Interne competitie"
+    },
+    {
+     "slug": "knsb",
+     "label": "KNSB"
+    },
+    {
+     "slug": "fsb",
+     "label": "FSB"
+    },
+    {
+     "slug": "jeugd",
+     "label": "Jeugd"
+    },
+    {
+     "slug": "toernooien",
+     "label": "Toernooien"
+    }
+   ]
+  }
+ ],
+ "menus": [
+  {
+   "name": "primary",
+   "label": "Hoofdmenu",
+   "items": [
+    {
+     "type": "custom",
+     "label": "Nieuws",
+     "url": "/nieuws"
+    },
+    {
+     "type": "custom",
+     "label": "Agenda",
+     "url": "/agenda"
+    },
+    {
+     "type": "custom",
+     "label": "Competitie",
+     "url": "/competitie"
+    },
+    {
+     "type": "custom",
+     "label": "Teams",
+     "url": "/teams"
+    },
+    {
+     "type": "custom",
+     "label": "Jeugd",
+     "url": "/jeugd"
+    },
+    {
+     "type": "custom",
+     "label": "De club",
+     "url": "/club"
+    }
+   ]
+  },
+  {
+   "name": "footer",
+   "label": "Voettekst",
+   "items": [
+    {
+     "type": "custom",
+     "label": "Lid worden",
+     "url": "/lid-worden"
+    },
+    {
+     "type": "custom",
+     "label": "Eregalerij",
+     "url": "/eregalerij"
+    },
+    {
+     "type": "custom",
+     "label": "Sponsors",
+     "url": "/sponsors"
+    },
+    {
+     "type": "custom",
+     "label": "Competitiereglement",
+     "url": "/competitiereglement"
+    },
+    {
+     "type": "custom",
+     "label": "Koppelingen",
+     "url": "/koppelingen"
+    },
+    {
+     "type": "custom",
+     "label": "Privacy",
+     "url": "/privacy"
+    }
+   ]
+  }
+ ],
+ "redirects": [
+  {
+   "source": "/feed",
+   "destination": "/rss.xml",
+   "type": 301,
+   "groupName": "Oude website"
+  },
+  {
+   "source": "/wp-admin",
+   "destination": "/_emdash/admin",
+   "type": 301,
+   "groupName": "Oude website"
+  },
+  {
+   "source": "/wp-login.php",
+   "destination": "/_emdash/admin",
+   "type": 301,
+   "groupName": "Oude website"
+  }
+ ]
+}

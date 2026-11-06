@@ -1,0 +1,62 @@
+---
+import { decodeSlug, getEmDashCollection, getEmDashEntry } from "emdash";
+import { PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+import Datumblok from "../components/Datumblok.astro";
+import { agendaItems } from "../lib/agenda";
+import { tijdstip } from "../lib/datum";
+
+// Pagina's uit het CMS staan direct onder de root (/club, /jeugd, /fk2019, ...),
+// zodat de oude WordPress-adressen blijven werken.
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+const { entry: pagina, cacheHint } = await getEmDashEntry("pages", slug);
+if (!pagina) return Astro.rewrite("/404");
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+// Extra's per pagina
+let jeugdAgenda: Awaited<ReturnType<typeof agendaItems>>["entries"] = [];
+if (slug === "jeugd") {
+	const res = await agendaItems();
+	jeugdAgenda = res.entries.filter((a) => a.data.soort === "Jeugd" && new Date(a.data.begin).getTime() > Date.now()).slice(0, 6);
+}
+const teams = slug === "competitie" ? (await getEmDashCollection("teams", { orderBy: { volgorde: "asc" }, limit: 20 })).entries : [];
+const heeftPartijen = (pagina.data.content ?? []).some((b: any) => b._type === "partij");
+---
+<Base title={pagina.data.title} description={pagina.data.intro} content={{ collection: "pages", id: pagina.data.id, slug }}>
+	<div class="wrap">
+		<header class="paginakop smal" style="margin-inline:0">
+			<h1 {...pagina.edit.title}>{pagina.data.title}</h1>
+			{pagina.data.intro && <p class="lead">{pagina.data.intro}</p>}
+		</header>
+		<div class:list={[{ artikel: slug === "jeugd" || slug === "competitie" }]}>
+			<div class="prose" style={heeftPartijen ? "max-width:none" : undefined} {...pagina.edit.content}>
+				<PortableText value={pagina.data.content} />
+			</div>
+			{slug === "jeugd" && (
+				<aside class="artikel__zij paneel binnenkort">
+					<h2 style="font-size:1.15rem">Komende jeugdavonden</h2>
+					{jeugdAgenda.length === 0 ? <p class="gedempt klein">Elke donderdag van 18.45 tot 19.45 uur. Het programma voor dit seizoen volgt.</p> : (
+						<ol>{jeugdAgenda.map((a) => <li><Datumblok datum={a.data.begin} /><div><p class="titel">{a.data.title}</p><p class="gedempt klein">{tijdstip(a.data.begin)} uur</p></div></li>)}</ol>
+					)}
+					<a class="knop knop--klein" href="/lid-worden">Kom een keer meedoen</a>
+				</aside>
+			)}
+			{slug === "competitie" && (
+				<aside class="artikel__zij">
+					<section class="paneel stapel">
+						<p class="oogje">Binnenkort</p>
+						<h2 style="font-size:1.15rem">Standen direct uit Clubstand</h2>
+						<p class="klein">De competitieleider voert straks de uitslagen in Clubstand in. Stand, indeling en uitslagen verschijnen dan meteen hier, en leden melden zich daar af voor een ronde.</p>
+					</section>
+					<section class="paneel stapel">
+						<h2 style="font-size:1.15rem">Externe competitie</h2>
+						<ul style="margin:0;padding-left:1.1em">
+							{teams.map((t) => <li><a href={`/teams#${t.id}`}>{t.data.bond}: {t.data.title}</a></li>)}
+						</ul>
+					</section>
+				</aside>
+			)}
+		</div>
+	</div>
+</Base>

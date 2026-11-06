@@ -1,0 +1,35 @@
+{
+  "name": "schaakwoude-nl",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Website van Schaakvereniging Damwoude (schaakwoude.nl), gebouwd met Astro en EmDash op Cloudflare",
+  "emdash": {
+    "seed": "seed/seed.json"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.3.1",
+    "@astrojs/react": "^7.0.0",
+    "@emdash-cms/cloudflare": "1.4.0",
+    "astro": "^7.3.2",
+    "chess.js": "^1.4.0",
+    "emdash": "1.4.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "@schaakwoude/schaakpartij": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260820.1",
+    "@emdash-cms/gutenberg-to-portable-text": "1.4.0",
+    "lightningcss": "^1.33.0",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.125.0"
+  },
+  "packageManager": "pnpm@10.30.0"
+}

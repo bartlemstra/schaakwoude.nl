@@ -1,0 +1,43 @@
+---
+/**
+ * Rendert een "partij"-blok. Het bord wordt in de browser opgebouwd (zie
+ * src/scripts/viewer.ts in de site), zodat de server niets hoeft te rekenen:
+ * de gratis Workers hebben maar 10 ms CPU per verzoek.
+ */
+interface Props {
+	node: { _key?: string; pgn?: string; titel?: string; modus?: string; zwart_onder?: boolean };
+}
+const { node } = Astro.props;
+const pgn = (node.pgn ?? "").trim();
+const kop = (naam: string) => pgn.match(new RegExp(`\\[${naam} "([^"]*)"\\]`))?.[1]?.trim();
+const wit = kop("White");
+const zwart = kop("Black");
+const titel = node.titel || (wit && zwart ? `${wit} – ${zwart}` : kop("Event")) || "Partij";
+const details = [kop("Event") !== titel ? kop("Event") : null, kop("Round") && `ronde ${kop("Round")}`, kop("Date")?.replace(/\.\?\?/g, "").replace(/\./g, "-"), kop("Result")]
+	.filter((d) => d && d !== "?" && d !== "*")
+	.join(" · ");
+---
+{pgn && (
+	<figure class="partij" data-partij data-pgn={pgn} data-modus={node.modus ?? "partij"} data-zwart-onder={node.zwart_onder ? "1" : undefined}>
+		<div class="partij__bord-kolom">
+			<div class="partij__bord" role="img" aria-label={`Schaakbord: ${titel}`}></div>
+			<div class="partij__knoppen" role="group" aria-label="Bediening">
+				<button type="button" data-act="start" aria-label="Naar het begin">⏮</button>
+				<button type="button" data-act="prev" aria-label="Vorige zet">◀</button>
+				<button type="button" data-act="next" aria-label="Volgende zet">▶</button>
+				<button type="button" data-act="end" aria-label="Naar het einde">⏭</button>
+				<button type="button" data-act="flip" aria-label="Bord draaien">⇅</button>
+			</div>
+		</div>
+		<figcaption class="partij__info">
+			<p class="partij__titel">{titel}</p>
+			{details && <p class="partij__details">{details}</p>}
+			<div class="partij__zetten" aria-label="Zetten"></div>
+			<div class="partij__acties">
+				<button type="button" data-act="kopieer">Kopieer PGN</button>
+				<button type="button" data-act="download">Download PGN</button>
+			</div>
+			<noscript><pre>{pgn}</pre></noscript>
+		</figcaption>
+	</figure>
+)}
