@@ -1,0 +1,61 @@
+---
+import { getEmDashCollection } from "emdash";
+import Base from "../layouts/Base.astro";
+
+const [seizoenen, ereleden] = await Promise.all([
+	getEmDashCollection("eregalerij", { orderBy: { title: "desc" }, limit: 100 }),
+	getEmDashCollection("ereleden", { orderBy: { sinds: "asc" }, limit: 50 }),
+]);
+if (Astro.cache?.enabled) {
+	Astro.cache.set(seizoenen.cacheHint);
+	Astro.cache.set(ereleden.cacheHint);
+}
+const kolommen = [
+	["intern_1", "Clubkampioen"],
+	["intern_2", "2e"],
+	["intern_3", "3e"],
+	["rapid", "Rapid"],
+	["snelschaak", "Snelschaak"],
+	["zomer", "Zomer"],
+	["jeugd", "Jeugd"],
+] as const;
+const titels = new Map<string, number>();
+for (const s of seizoenen.entries) if (s.data.intern_1) titels.set(s.data.intern_1, (titels.get(s.data.intern_1) ?? 0) + 1);
+const meeste = [...titels].sort((a, b) => b[1] - a[1]).slice(0, 5);
+---
+<Base title="Eregalerij" description="Alle clubkampioenen van Schaakwoude sinds 1979 en de ereleden van de club.">
+	<div class="wrap">
+		<header class="paginakop">
+			<p class="oogje">Sinds 1979/1980</p>
+			<h1>Eregalerij</h1>
+			<p class="lead">Elke kampioen van de interne competitie, de rapid, het snelschaken, de zomercompetitie en de jeugd.</p>
+		</header>
+		<div class="splits" style="margin-bottom:2.5rem">
+			<section class="paneel stapel">
+				<h2 style="font-size:1.3rem">Ereleden</h2>
+				<ul style="margin:0;padding-left:1.1em">
+					{ereleden.entries.map((e) => <li><b>{e.data.title}</b>, {e.data.eretitel.toLowerCase()}{e.data.sinds && ` (sinds ${e.data.sinds})`}</li>)}
+				</ul>
+			</section>
+			<section class="paneel stapel">
+				<h2 style="font-size:1.3rem">Vaakst clubkampioen</h2>
+				<ol style="margin:0;padding-left:1.3em">
+					{meeste.map(([naam, n]) => <li><b>{naam}</b>: {n}×</li>)}
+				</ol>
+			</section>
+		</div>
+		<div class="tabel-wrap">
+			<table class="tabel">
+				<thead><tr><th>Seizoen</th>{kolommen.map(([, l]) => <th>{l}</th>)}</tr></thead>
+				<tbody>
+					{seizoenen.entries.map((s) => (
+						<tr id={s.id}>
+							<td class="n">{s.data.title}</td>
+							{kolommen.map(([k], i) => <td class:list={{ sterk: i === 0 }}>{s.data[k] ?? ""}</td>)}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</Base>

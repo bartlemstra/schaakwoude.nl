@@ -1,0 +1,60 @@
+/* Lettertypes zelf gehost via Fontsource (geen verzoeken naar Google vanuit de
+ * browser). Een browser downloadt alleen de bestanden die het actieve thema gebruikt. */
+@import "@fontsource/bricolage-grotesque/latin-600.css";
+@import "@fontsource/bricolage-grotesque/latin-ext-600.css";
+@import "@fontsource/bricolage-grotesque/latin-700.css";
+@import "@fontsource/bricolage-grotesque/latin-ext-700.css";
+@import "@fontsource/bricolage-grotesque/latin-800.css";
+@import "@fontsource/bricolage-grotesque/latin-ext-800.css";
+@import "@fontsource/atkinson-hyperlegible/latin-400.css";
+@import "@fontsource/atkinson-hyperlegible/latin-ext-400.css";
+@import "@fontsource/atkinson-hyperlegible/latin-700.css";
+@import "@fontsource/atkinson-hyperlegible/latin-ext-700.css";
+@import "@fontsource/atkinson-hyperlegible/latin-400-italic.css";
+@import "@fontsource/atkinson-hyperlegible/latin-ext-400-italic.css";
+@import "@fontsource/fraunces/latin-600.css";
+@import "@fontsource/fraunces/latin-ext-600.css";
+@import "@fontsource/fraunces/latin-700.css";
+@import "@fontsource/fraunces/latin-ext-700.css";
+@import "@fontsource/fraunces/latin-900.css";
+@import "@fontsource/fraunces/latin-ext-900.css";
+@import "@fontsource/fraunces/latin-700-italic.css";
+@import "@fontsource/fraunces/latin-ext-700-italic.css";
+@import "@fontsource/fraunces/latin-900-italic.css";
+@import "@fontsource/fraunces/latin-ext-900-italic.css";
+@import "@fontsource/literata/latin-400.css";
+@import "@fontsource/literata/latin-ext-400.css";
+@import "@fontsource/literata/latin-600.css";
+@import "@fontsource/literata/latin-ext-600.css";
+@import "@fontsource/literata/latin-400-italic.css";
+@import "@fontsource/literata/latin-ext-400-italic.css";
+@import "@fontsource/barlow-condensed/latin-600.css";
+@import "@fontsource/barlow-condensed/latin-ext-600.css";
+@import "@fontsource/barlow-condensed/latin-700.css";
+@import "@fontsource/barlow-condensed/latin-ext-700.css";
+@import "@fontsource/barlow-condensed/latin-800.css";
+@import "@fontsource/barlow-condensed/latin-ext-800.css";
+@import "@fontsource/barlow/latin-400.css";
+@import "@fontsource/barlow/latin-ext-400.css";
+@import "@fontsource/barlow/latin-500.css";
+@import "@fontsource/barlow/latin-ext-500.css";
+@import "@fontsource/barlow/latin-700.css";
+@import "@fontsource/barlow/latin-ext-700.css";
+@import "@fontsource/barlow/latin-400-italic.css";
+@import "@fontsource/barlow/latin-ext-400-italic.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-ext-400.css";
+@import "@fontsource/ibm-plex-mono/latin-600.css";
+@import "@fontsource/ibm-plex-mono/latin-ext-600.css";
+@import "@fontsource/noto-sans-symbols-2/symbols-400.css";
+
+:root {
+	--lt-fries-kop: "Bricolage Grotesque";
+	--lt-fries-tekst: "Atkinson Hyperlegible";
+	--lt-blad-kop: "Fraunces";
+	--lt-blad-tekst: "Literata";
+	--lt-toer-kop: "Barlow Condensed";
+	--lt-toer-tekst: "Barlow";
+	--lt-mono: "IBM Plex Mono";
+	--lt-schaak: "Noto Sans Symbols 2";
+}

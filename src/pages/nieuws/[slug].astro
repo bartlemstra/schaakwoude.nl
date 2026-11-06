@@ -1,0 +1,56 @@
+---
+import { decodeSlug, getEmDashCollection, getEmDashEntry } from "emdash";
+import { Image, PortableText } from "emdash/ui";
+import Base from "../../layouts/Base.astro";
+import NieuwsKaart from "../../components/NieuwsKaart.astro";
+import { datumLang } from "../../lib/datum";
+import { eersteAfbeelding, leestijd } from "../../lib/inhoud";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+const { entry: bericht, cacheHint } = await getEmDashEntry("posts", slug);
+if (!bericht) return Astro.rewrite("/404");
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+const d = bericht.data;
+const rubriek = d.terms?.category?.[0];
+const meer = await getEmDashCollection("posts", {
+	orderBy: { published_at: "desc" },
+	limit: 4,
+	...(rubriek ? { where: { category: rubriek.slug } } : {}),
+});
+const verwant = meer.entries.filter((b) => b.id !== bericht.id).slice(0, 3);
+const beeld = d.featured_image?.src ?? eersteAfbeelding(d.content)?.src;
+---
+<Base
+	title={d.title}
+	description={d.excerpt}
+	image={beeld}
+	type="article"
+	publishedTime={d.publishedAt?.toISOString()}
+	modifiedTime={d.updatedAt?.toISOString()}
+	author={d.byline?.displayName}
+	content={{ collection: "posts", id: d.id, slug }}
+>
+	<article class="wrap">
+		<header class="paginakop smal" style="margin-inline:0">
+			<nav class="kruimel" aria-label="Kruimelpad"><a href="/nieuws">Nieuws</a>{rubriek && <>›<a href={`/nieuws?rubriek=${rubriek.slug}`}>{rubriek.label}</a></>}</nav>
+			<h1 {...bericht.edit.title}>{d.title}</h1>
+			<div class="meta-regel">
+				{d.publishedAt && <time datetime={d.publishedAt.toISOString()}>{datumLang(d.publishedAt)}</time>}
+				{d.byline && <span>· door {d.byline.displayName}</span>}
+				<span>· {leestijd(d.content)} min lezen</span>
+			</div>
+		</header>
+		<div class="artikel">
+			<div class="prose" {...bericht.edit.content}>
+				{d.featured_image && <Image image={d.featured_image} />}
+				<PortableText value={d.content} />
+			</div>
+			<aside class="artikel__zij">
+				{verwant.length > 0 && <h2 style="font-size:1.1rem">Meer {rubriek ? rubriek.label : "nieuws"}</h2>}
+				{verwant.map((b) => <NieuwsKaart bericht={b} beeld={false} />)}
+			</aside>
+		</div>
+	</article>
+</Base>

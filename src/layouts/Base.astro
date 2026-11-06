@@ -1,0 +1,160 @@
+---
+import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
+import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import Logo from "../components/Logo.astro";
+import ThemaKiezer from "../components/ThemaKiezer.astro";
+import { CLUB, THEMA, THEMA_KIEZER } from "../lib/site";
+import "../styles/lettertypes.css";
+import "../styles/themas.css";
+import "../styles/basis.css";
+
+interface Props {
+	title?: string;
+	description?: string | null;
+	image?: string | null;
+	type?: "website" | "article";
+	publishedTime?: string | null;
+	modifiedTime?: string | null;
+	author?: string | null;
+	/** Voor plugin-bijdragen op inhoudspagina's */
+	content?: { collection: string; id: string; slug?: string | null };
+}
+const { title, description, image, type = "website", publishedTime, modifiedTime, author, content } = Astro.props;
+
+const [instellingen, hoofdmenu, voetmenu] = await Promise.all([
+	getSiteSettingsWithCacheHint(),
+	getMenuWithCacheHint("primary"),
+	getMenuWithCacheHint("footer"),
+]);
+if (Astro.cache?.enabled) {
+	Astro.cache.set(instellingen.cacheHint);
+	Astro.cache.set(hoofdmenu.cacheHint);
+	Astro.cache.set(voetmenu.cacheHint);
+}
+const siteNaam = instellingen.data.title || CLUB.kort;
+const volledigeTitel = title ? `${title} · ${siteNaam}` : `${siteNaam} · Schaakvereniging in ${CLUB.plaats}`;
+const omschrijving = description || instellingen.data.tagline || CLUB.speeltijden;
+
+const pagina = createPublicPageContext({
+	Astro,
+	kind: content ? "content" : "custom",
+	pageType: type,
+	title: volledigeTitel,
+	pageTitle: title ?? siteNaam,
+	description: omschrijving,
+	image,
+	content,
+	seo: { ogImage: image },
+	articleMeta: { publishedTime, modifiedTime, author },
+	siteName: siteNaam,
+});
+
+const pad = Astro.url.pathname.replace(/\/$/, "") || "/";
+function huidig(url: string): "page" | "true" | undefined {
+	const doel = url.replace(/\/$/, "") || "/";
+	if (doel === pad) return "page";
+	if (doel !== "/" && pad.startsWith(`${doel}/`)) return "true";
+	return undefined;
+}
+const menu = hoofdmenu.data?.items ?? [];
+const voet = voetmenu.data?.items ?? [];
+const jaar = new Date().getFullYear();
+const ingelogd = !!Astro.locals.user;
+---
+<!doctype html>
+<html lang="nl" data-thema={THEMA}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<title>{volledigeTitel}</title>
+		{THEMA_KIEZER && (
+			<script is:inline>
+				(function () {
+					var t = new URLSearchParams(location.search).get("thema");
+					try { t = t || localStorage.getItem("thema"); } catch (e) {}
+					if (t === "fries" || t === "clubblad" || t === "toernooi") document.documentElement.dataset.thema = t;
+				})();
+			</script>
+		)}
+		{THEMA_KIEZER && <meta name="robots" content="noindex, nofollow" />}
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="alternate" type="application/rss+xml" title={`${siteNaam}: nieuws`} href="/rss.xml" />
+		<link rel="alternate" type="text/calendar" title={`${siteNaam}: agenda`} href="/agenda.ics" />
+		<EmDashHead page={pagina} />
+	</head>
+	<body>
+		<EmDashBodyStart page={pagina} />
+		{THEMA_KIEZER && <ThemaKiezer />}
+		<div class="vlagband" aria-hidden="true"></div>
+		<header class="kop">
+			<div class="wrap">
+				<a class="merk" href="/" aria-label={`${siteNaam}, naar de voorpagina`}>
+					<Logo />
+					<span><span class="merk__naam">{siteNaam}</span><span class="merk__sub">{CLUB.plaats} · sinds {CLUB.opgericht}</span></span>
+				</a>
+				<nav class="hoofdnav" aria-label="Hoofdmenu">
+					<ul>
+						{menu.map((item) => (
+							<li><a href={item.url} aria-current={huidig(item.url)}>{item.label}</a></li>
+						))}
+					</ul>
+				</nav>
+				<div class="kop__acties">
+					<a class="knop knop--klein kop__knop" href="/lid-worden">Lid worden</a>
+					<details class="menu">
+						<summary>Menu</summary>
+						<nav class="menu__paneel" aria-label="Menu">
+							<a href="/" aria-current={huidig("/")}>Voorpagina</a>
+							{menu.map((item) => <a href={item.url} aria-current={huidig(item.url)}>{item.label}</a>)}
+							{voet.map((item) => <a href={item.url} aria-current={huidig(item.url)}>{item.label}</a>)}
+							<a href="/zoeken">Zoeken</a>
+						</nav>
+					</details>
+				</div>
+			</div>
+		</header>
+		<main id="inhoud">
+			<slot />
+		</main>
+		<footer class="voet">
+			<div class="wrap">
+				<div>
+					<h2>{CLUB.naam}</h2>
+					<p>{CLUB.speeltijden}</p>
+					<p style="margin-top:.5rem">{CLUB.speelzaal.naam}<br />{CLUB.speelzaal.adres}, {CLUB.speelzaal.plaats}</p>
+					<p style="margin-top:.5rem"><a href={`mailto:${CLUB.email}`}>{CLUB.email}</a></p>
+				</div>
+				<div>
+					<h2>De club</h2>
+					<ul>
+						{voet.map((item) => <li><a href={item.url}>{item.label}</a></li>)}
+					</ul>
+				</div>
+				<div>
+					<h2>Volgen</h2>
+					<ul>
+						<li><a href="/rss.xml">Nieuws via RSS</a></li>
+						<li><a href="/agenda.ics">Agenda in je eigen kalender</a></li>
+						{CLUB.social.map((s) => <li><a href={s.url} rel="noopener">{s.naam}</a></li>)}
+						<li><a href="/zoeken">Zoeken in het archief</a></li>
+					</ul>
+				</div>
+				<div>
+					<h2>Voor leden</h2>
+					<ul>
+						<li><a href="/_emdash/admin">{ingelogd ? "Naar het beheer" : "Inloggen om een verslag te plaatsen"}</a></li>
+						<li><a href="/competitiereglement">Competitiereglement</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="voet__basis">
+				<div class="wrap"><span>© {jaar} {CLUB.naam}</span><span>Open source op <a href="https://github.com/bartlemstra/schaakwoude.nl">GitHub</a></span></div>
+			</div>
+		</footer>
+		<script>
+			if (document.querySelector("[data-partij]")) import("../scripts/partij");
+		</script>
+		<EmDashBodyEnd page={pagina} />
+	</body>
+</html>

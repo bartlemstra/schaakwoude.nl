@@ -1,0 +1,42 @@
+---
+import { getEmDashCollection } from "emdash";
+import { PortableText } from "emdash/ui";
+import Base from "../layouts/Base.astro";
+
+const teams = await getEmDashCollection("teams", { orderBy: { volgorde: "asc" }, limit: 30 });
+if (Astro.cache?.enabled) Astro.cache.set(teams.cacheHint);
+const bonden = [
+	{ bond: "KNSB", titel: "Landelijke competitie (KNSB)", tekst: "Op zaterdag, thuis in Grand Café de Nije Warf in Wâlterswâld." },
+	{ bond: "FSB", titel: "Friese competitie (FSB)", tekst: "Doordeweeks, thuis in De Wâlden in Damwâld." },
+];
+---
+<Base title="Teams" description="De teams van Schaakwoude in de KNSB- en FSB-competitie.">
+	<div class="wrap">
+		<header class="paginakop">
+			<p class="oogje">Seizoen 2026/2027</p>
+			<h1>Teams</h1>
+			<p class="lead">De teamcommissie stelt de teams elk jaar in augustus en september samen. Uitslagen en standen staan op netstand; verslagen vind je bij het <a href="/nieuws">nieuws</a>.</p>
+		</header>
+		<div class="stapel" style="gap:2.5rem">
+			{bonden.map(({ bond, titel, tekst }) => (
+				<section class="stapel">
+					<div><h2>{titel}</h2><p class="gedempt">{tekst}</p></div>
+					<div class="raster raster--2">
+						{teams.entries.filter((t) => t.data.bond === bond).map((t) => (
+							<article class="paneel team" id={t.id}>
+								<div class="kopregel" style="margin:0">
+									<h3>{t.data.title}</h3>
+									{t.data.klasse && <span class="label">{t.data.klasse}</span>}
+								</div>
+								{t.data.teamleider && <p class="gedempt klein">Teamleider: {t.data.teamleider}</p>}
+								<ul>{(t.data.spelers ?? []).map((s: { naam: string }) => <li>{s.naam}</li>)}</ul>
+								{t.data.content && <div class="prose"><PortableText value={t.data.content} /></div>}
+								{t.data.netstand_url && <p><a href={t.data.netstand_url} rel="noopener">Uitslagen en stand op netstand</a></p>}
+							</article>
+						))}
+					</div>
+				</section>
+			))}
+		</div>
+	</div>
+</Base>
