@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.emdash/
+.dev.vars
+.env
+*.db
+*.sqlite
+uploads/
+# Uitvoer van de migratie: afgeleid van de SQL-exports, die nooit in git horen
+migratie/uit/
+*.sql
+.DS_Store
